@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 
 const FeaturedBalogs = () => {
@@ -5,6 +6,7 @@ const FeaturedBalogs = () => {
         <div>
             <NavBar></NavBar>
             featured blogs
+            <Footer></Footer>
         </div>
     );
 };

@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 
 const Wishlist = () => {
@@ -5,6 +6,7 @@ const Wishlist = () => {
         <div>
             <NavBar></NavBar>
             wishlist
+            <Footer></Footer>
         </div>
     );
 };
