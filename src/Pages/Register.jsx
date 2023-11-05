@@ -9,7 +9,7 @@ const Register = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { createUser, setUserName, setUserPhoto } = useContext(AuthContext);
+    const { createUser, userName, userPhoto, setUserName, setUserPhoto } = useContext(AuthContext);
 
     // set username
     const handleUserName = e => {
@@ -29,7 +29,7 @@ const Register = () => {
 
         const email = e.target.email.value;
         const password = e.target.password.value;
-    
+
         if (!/[A-Z]/.test(password)) {
             Swal.fire({
                 icon: 'error',
@@ -63,7 +63,20 @@ const Register = () => {
 
         createUser(email, password)
             .then(res => {
-                console.log(res.user)
+                console.log(res.user);
+
+                const user = { userEmail: email, userName, userPhoto };
+                // console.log(user);
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                .then(res => console.log(res))
+                .catch(err => console.error(err))
+
                 Swal.fire({
                     icon: 'success',
                     text: 'User Created Successfully!',
