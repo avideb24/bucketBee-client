@@ -1,15 +1,28 @@
-import { useLoaderData } from "react-router-dom";
+
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Wishlist = () => {
 
-    const loadedWishlist = useLoaderData();
+    const {user, setLoading} = useContext(AuthContext);
 
-    const [wishlist, setWishlist] = useState(loadedWishlist);
+    const [wishlist, setWishlist] = useState([]);
+
+    const url = `http://localhost:5000/wishlist?email=${user?.email}`;
+
+    useEffect(() => {
+        fetch(url)
+        .then(res=> res.json())
+        .then(data => {
+            setLoading(true)
+            console.log(data);
+            setWishlist(data)
+        })
+    },[url, setLoading])
 
     // console.log(wishlist);
 
