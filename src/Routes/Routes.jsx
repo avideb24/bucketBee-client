@@ -4,10 +4,12 @@ import ErrorPage from "../components/ErrorPage";
 import Home from "../Pages/Home";
 import AddBlog from "../Pages/AddBlog";
 import AllBlogs from "../Pages/AllBlogs";
-import FeaturedBalogs from "../Pages/FeaturedBalogs";
+import FeaturedBlogs from "../Pages/FeaturedBlogs";
 import Wishlist from "../Pages/Wishlist";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import PrivateRoute from "./PrivateRoute";
+import BlogDetails from "../components/BlogDetails";
 
 
 const Routes = createBrowserRouter([
@@ -22,7 +24,7 @@ const Routes = createBrowserRouter([
             },
             {
                 path: '/addBlog',
-                element: <AddBlog></AddBlog>
+                element: <PrivateRoute><AddBlog></AddBlog></PrivateRoute>
             },
             {
                 path: '/allBlogs',
@@ -31,7 +33,8 @@ const Routes = createBrowserRouter([
             },
             {
                 path: '/featuredBlogs',
-                element: <FeaturedBalogs></FeaturedBalogs>
+                element: <FeaturedBlogs></FeaturedBlogs>,
+                loader: () => fetch('http://localhost:5000/blogs')
             },
             {
                 path: '/wishlist',
@@ -45,6 +48,11 @@ const Routes = createBrowserRouter([
                 path: '/register',
                 element: <Register></Register>
             },
+            {
+                path: '/blogs/:id',
+                element: <BlogDetails></BlogDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
+            }
         ]
     }
 ])

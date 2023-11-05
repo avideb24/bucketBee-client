@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const AddBlog = () => {
+
+    const {userName, userPhoto} = useContext(AuthContext);
 
     const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -22,8 +26,8 @@ const AddBlog = () => {
         const longDescription = form.longDescription.value;
         const category = selectedCategory;
 
-        const addedBlog = { title, photo, shortDescription, longDescription, category }
-        // console.log(addedBlog);
+        const addedBlog = { title, photo, shortDescription, longDescription, category , userName, userPhoto };
+        console.log(addedBlog);
 
         fetch('http://localhost:5000/blogs', {
             method: 'POST',
@@ -34,6 +38,11 @@ const AddBlog = () => {
         })
         .then(res=> {
             console.log(res);
+            Swal.fire({
+                icon: 'success',
+                title: 'Blog Added Successfully!',
+            })
+            form.reset();
         })
         .catch(err => {
             console.log(err);

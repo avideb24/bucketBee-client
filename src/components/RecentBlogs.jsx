@@ -3,10 +3,11 @@ import { BsFillClipboardHeartFill } from "react-icons/bs";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const RecentBlogs = () => {
 
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const [blogs, setBlogs] = useState([]);
 
@@ -24,28 +25,28 @@ const RecentBlogs = () => {
     }, [])
 
     const handleWishlist = id => {
-        const {_id, title, photo, category, shortDescription} = blogs.find(blog => blog._id === id);
-        const wishlistedBlog = {_id, title, photo, category, shortDescription, email: user.email };
+        const { _id, title, photo, category, shortDescription } = blogs.find(blog => blog._id === id);
+        const wishlistedBlog = { _id, title, photo, category, shortDescription, email: user.email };
         fetch('http://localhost:5000/wishlist', {
             method: 'POST',
-            headers:{
+            headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(wishlistedBlog)
         })
-        .then(res => {
-            console.log(res);
-            if(res.ok){
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Wishlisted Successfully!',
-                  })
-            }
-        })
-        .catch(err => {
-            console.error(err);
-        })
-       
+            .then(res => {
+                console.log(res);
+                if (res.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Wishlisted Successfully!',
+                    })
+                }
+            })
+            .catch(err => {
+                console.error(err);
+            })
+
     }
 
 
@@ -65,7 +66,9 @@ const RecentBlogs = () => {
                                 </div>
                                 <h2 className="text-2xl text-yellow-500 font-extrabold">{blog.title}</h2>
                                 <p>{blog.shortDescription}</p>
-                                <button className="flex items-center gap-2 text-yellow-500">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
+                                <Link to={`/blogs/${blog._id}`}>
+                                    <button className="flex items-center gap-2 text-yellow-500">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
+                                </Link>
                             </div>
                         </div>
                     )

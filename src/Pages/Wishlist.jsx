@@ -5,10 +5,11 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Wishlist = () => {
 
-    const {user, setLoading} = useContext(AuthContext);
+    const { user, setLoading } = useContext(AuthContext);
 
     const [wishlist, setWishlist] = useState([]);
 
@@ -16,13 +17,13 @@ const Wishlist = () => {
 
     useEffect(() => {
         fetch(url)
-        .then(res=> res.json())
-        .then(data => {
-            setLoading(true)
-            console.log(data);
-            setWishlist(data)
-        })
-    },[url, setLoading])
+            .then(res => res.json())
+            .then(data => {
+                setLoading(true)
+                console.log(data);
+                setWishlist(data)
+            })
+    }, [url, setLoading])
 
     // console.log(wishlist);
 
@@ -73,7 +74,7 @@ const Wishlist = () => {
                 {
                     wishlist.length === 0 ?
                         <div className="text-2xl text-yellow-500 font-bold text-center">
-                            No Items Here
+                            No Blogs Here
                         </div>
                         :
                         <div>
@@ -86,7 +87,9 @@ const Wishlist = () => {
                                         </div>
                                         <h2 className="text-xl text-yellow-500 font-bold">{blog.title}</h2>
                                         <p>{blog.shortDescription}</p>
-                                        <button className="px-3 py-1 text-[#08133a] bg-yellow-500 rounded-md">Details</button>
+                                        <Link to={`/blogs/${blog._id}`}>
+                                            <button className="px-3 py-1 text-[#08133a] bg-yellow-500 rounded-md">Details</button>
+                                        </Link>
                                         <button className="text-4xl text-yellow-500" onClick={() => handleDelete(blog._id)}><AiFillCloseCircle></AiFillCloseCircle></button>
                                     </div>
                                 )
