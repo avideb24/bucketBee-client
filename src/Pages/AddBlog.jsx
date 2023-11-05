@@ -23,9 +23,21 @@ const AddBlog = () => {
         const category = selectedCategory;
 
         const addedBlog = { title, photo, shortDescription, longDescription, category }
+        // console.log(addedBlog);
 
-        console.log(addedBlog);
-
+        fetch('http://localhost:5000/blogs', {
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(addedBlog)
+        })
+        .then(res=> {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
 
     }
 
@@ -42,10 +54,10 @@ const AddBlog = () => {
                     <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="shortDescription" placeholder="Short Description" /> <br />
                     <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="longDescription" placeholder="Long Description" /> <br />
                     <select onChange={handleCategory} className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md">
-                        <option value="food">Food</option>
-                        <option value="travel">Travel</option>
-                        <option value="education">Education</option>
-                        <option value="lifestyle">Lifestyle</option>
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Education">Education</option>
+                        <option value="Lifestyle">Lifestyle</option>
                     </select>
                     <input type="submit" className="w-full h-10 px-4 outline-none bg-yellow-500 text-black font-bold rounded-md cursor-pointer" value="Submit" />
                 </form>
