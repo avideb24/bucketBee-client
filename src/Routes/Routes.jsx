@@ -34,7 +34,8 @@ const Routes = createBrowserRouter([
             },
             {
                 path: '/wishlist',
-                element: <Wishlist></Wishlist>
+                element: <Wishlist></Wishlist>,
+                loader: () => fetch('http://localhost:5000/wishlist')
             },
             {
                 path: '/login',

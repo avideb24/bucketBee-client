@@ -15,6 +15,8 @@ const AuthProvider = ({ children }) => {
 
     const [loading, setLoading] = useState(true);
 
+    const [wishlist, setWishlist] = useState([]);
+
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setLoading(false);
@@ -46,7 +48,7 @@ const AuthProvider = ({ children }) => {
     }
 
 
-    const authInfo = { user, loading, userName, userPhoto, setUserPhoto, setUserName, createUser, signInUser, signOutUser, googleSignIn }
+    const authInfo = { user, loading, userName, userPhoto, wishlist, setWishlist, setUserPhoto, setUserName, createUser, signInUser, signOutUser, googleSignIn }
 
     return (
         <AuthContext.Provider value={authInfo}>

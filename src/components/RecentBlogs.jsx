@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsFillClipboardHeartFill } from "react-icons/bs";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const RecentBlogs = () => {
+
+    const {user} = useContext(AuthContext);
 
     const [blogs, setBlogs] = useState([]);
 
@@ -19,6 +23,31 @@ const RecentBlogs = () => {
             })
     }, [])
 
+    const handleWishlist = id => {
+        const {_id, title, photo, category, shortDescription} = blogs.find(blog => blog._id === id);
+        const wishlistedBlog = {_id, title, photo, category, shortDescription, email: user.email };
+        fetch('http://localhost:5000/wishlist', {
+            method: 'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(wishlistedBlog)
+        })
+        .then(res => {
+            console.log(res);
+            if(res.ok){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Wishlisted Successfully!',
+                  })
+            }
+        })
+        .catch(err => {
+            console.error(err);
+        })
+       
+    }
+
 
     return (
         <div className="max-w-7xl mx-auto py-16">
@@ -32,7 +61,7 @@ const RecentBlogs = () => {
                             <div className="p-3 pb-0 space-y-1">
                                 <div className="flex justify-between items-center">
                                     <p className="text-sm">{blog.category}</p>
-                                    <button><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
+                                    <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
                                 </div>
                                 <h2 className="text-2xl text-yellow-500 font-extrabold">{blog.title}</h2>
                                 <p>{blog.shortDescription}</p>
