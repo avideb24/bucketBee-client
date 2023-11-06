@@ -1,13 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const NavBar = () => {
 
+    const { user, signOutUser } = useContext(AuthContext);
+
     const navigate = useNavigate();
 
-    const { user, userName, userPhoto, signOutUser } = useContext(AuthContext);
+    const [loadedUsers, setLoadedUsers] = useState([]);
+
+    const loggedUser = loadedUsers.find(loadedUser => loadedUser?.userEmail === user?.email);
+
+    // console.log(loggedUser);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/users')
+        .then(res => res.json())
+        .then(data => setLoadedUsers(data))
+
+        
+    },[])
+
 
 
     const handleLogOut = () => {
@@ -147,8 +162,22 @@ const NavBar = () => {
                         user ?
                             <div className="flex items-center gap-3">
                                 <div className="flex flex-col-reverse items-center sm:flex-row sm:items-center gap-2">
-                                    {userName && <p className="text-yellow-500 hidden sm:inline-block">{userName}</p>}
-                                    <div>{userPhoto && <img className="w-8 h-8 object-cover rounded-full" src={userPhoto} alt="" />}</div>
+
+                                    <div>
+                                        {
+                                            loggedUser ? <p className="text-yellow-500 hidden sm:inline-block">{loggedUser?.userName}</p>
+                                            :
+                                            ''
+                                        }
+                                    </div>
+                                    <div>
+                                        {
+                                            loggedUser ? <img className="w-8 h-8 object-cover rounded-full" src={loggedUser?.userPhoto} alt="" />
+                                            :
+                                            ''
+                                        }
+                                    </div>
+
                                 </div>
                                 <Link onClick={handleLogOut} className="bg-yellow-500 text-[#08133a] font-bold px-2 sm:px-4 py-1 rounded-md" to='/'>Log Out</Link>
                             </div>

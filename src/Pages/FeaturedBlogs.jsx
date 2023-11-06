@@ -8,6 +8,7 @@ const ImageCell = ({ imageUrl }) => {
     return <img src={imageUrl} alt="Blog" style={{ width: '35px', height: '35px', borderRadius: '50%' }} />;
 };
 
+
 const FeaturedBlogs = () => {
 
 

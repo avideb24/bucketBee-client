@@ -11,6 +11,8 @@ const Wishlist = () => {
 
     const { user, setLoading } = useContext(AuthContext);
 
+    // console.log(user);
+
     const [wishlist, setWishlist] = useState([]);
 
     const url = `http://localhost:5000/wishlist?email=${user?.email}`;
@@ -19,8 +21,8 @@ const Wishlist = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                setLoading(true)
-                console.log(data);
+                // setLoading(true)
+                // console.log(data);
                 setWishlist(data)
             })
     }, [url, setLoading])
