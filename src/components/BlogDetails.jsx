@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import { useContext, useEffect, useState } from "react";
@@ -79,6 +79,16 @@ const BlogDetails = () => {
                     <p className="text-sm text-yellow-500">{category}</p>
                 </div>
                 <div className="mt-3"><span className="text-xl">Description:</span> {longDescription}</div>
+
+                <div>
+                    {
+                        loggedUser?.userEmail === userEmail && 
+                        <Link to={`/updateBlog/${_id}`}>
+                            <button className="bg-yellow-500 px-4 py-2 rounded-md text-black mt-5">Update Blog</button>
+                        </Link>
+                    }
+                </div>
+
                 <div className="w-full h-2 bg-slate-500 my-5 rounded-md"></div>
 
                 <div className="my-4">

@@ -10,6 +10,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import BlogDetails from "../components/BlogDetails";
+import UpdatePage from "../Pages/UpdatePage";
 
 
 const Routes = createBrowserRouter([
@@ -51,6 +52,11 @@ const Routes = createBrowserRouter([
             {
                 path: '/blogs/:id',
                 element: <BlogDetails></BlogDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
+            },
+            {
+                path: '/updateBlog/:id',
+                element: <UpdatePage></UpdatePage>,
                 loader: ({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
             }
         ]

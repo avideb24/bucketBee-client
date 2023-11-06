@@ -9,6 +9,8 @@ const RecentBlogs = () => {
 
     const { user } = useContext(AuthContext);
 
+    const [userWishlist, setUserWishlist] = useState([]);
+
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
@@ -24,10 +26,22 @@ const RecentBlogs = () => {
             })
     }, [])
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
+        .then(res => res.json())
+        .then(data => setUserWishlist(data))
+    },[user?.email])
+
+    // console.log(userWishlist);
+
     const handleWishlist = id => {
         const { _id, title, photo, category, shortDescription } = blogs.find(blog => blog._id === id);
         const wishlistedBlog = { _id, title, photo, category, shortDescription, email: user.email };
-        fetch('http://localhost:5000/wishlist', {
+
+        const addedBlog = userWishlist.find(blog => blog._id === _id)
+
+        if(!addedBlog){
+            fetch('http://localhost:5000/wishlist', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -46,7 +60,13 @@ const RecentBlogs = () => {
             .catch(err => {
                 console.error(err);
             })
-
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Already Added!',
+            })
+        }
     }
 
 
@@ -65,7 +85,14 @@ const RecentBlogs = () => {
                                     <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
                                 </div>
                                 <h2 className="text-xl sm:text-2xl text-yellow-500 font-extrabold">{blog.title}</h2>
-                                <p className="text-sm">{blog.shortDescription}</p>
+                                <div>
+                                    {
+                                        blog.shortDescription.length < 40 ? 
+                                        <p className="text-sm">{blog.shortDescription}</p>
+                                        :
+                                        <p className="text-sm">{blog.shortDescription.slice(0,40)}...</p>
+                                    }
+                                </div>
                             </div>
                             <div className="grow">
                                 <Link to={`/blogs/${blog._id}`}>

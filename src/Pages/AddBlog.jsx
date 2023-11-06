@@ -60,7 +60,6 @@ const AddBlog = () => {
             .catch(err => {
                 console.log(err);
             })
-
     }
 
 
