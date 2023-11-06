@@ -161,11 +161,11 @@ const NavBar = () => {
                     {
                         user ?
                             <div className="flex items-center gap-3">
-                                <div className="flex flex-col-reverse items-center sm:flex-row sm:items-center gap-2">
+                                <div className="flex items-center gap-2">
 
                                     <div>
                                         {
-                                            loggedUser ? <p className="text-yellow-500 hidden sm:inline-block">{loggedUser?.userName}</p>
+                                            loggedUser ? <p className="text-yellow-500 text-xs sm:text-lg">{loggedUser?.userName}</p>
                                             :
                                             ''
                                         }

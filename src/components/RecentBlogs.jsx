@@ -51,21 +51,23 @@ const RecentBlogs = () => {
 
 
     return (
-        <div className="max-w-7xl mx-auto py-16">
-            <h2 className="text-center text-3xl text-yellow-500 font-bold pt-10 pb-2">Recent Blogs</h2>
+        <div className="max-w-7xl mx-auto py-8 sm:py-16">
+            <h2 className="text-center text-2xl sm:text-3xl text-yellow-500 font-bold pt-2 sm:pt-10 pb-2">Recent Blogs</h2>
             <div className='w-32 h-1 mx-auto bg-yellow-500 mb-8'></div>
-            <div className="flex flex-wrap justify-center items-center gap-4">
+            <div className="flex flex-wrap justify-center items-start gap-4">
                 {
                     blogs.slice(0, 6).map(blog =>
-                        <div key={blog._id} className="w-96 p-5 rounded-md bg-[#1d2c61]">
+                        <div key={blog._id} className="w-96 p-5 mx-4 sm:mx-0 rounded-md bg-[#1d2c61] flex flex-col">
                             <img className="w-full h-52 object-cover rounded-md" src={blog.photo} alt="" />
                             <div className="p-3 pb-0 space-y-1">
                                 <div className="flex justify-between items-center">
-                                    <p className="text-sm">{blog.category}</p>
+                                    <p className="text-xs sm:text-sm">{blog.category}</p>
                                     <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
                                 </div>
-                                <h2 className="text-2xl text-yellow-500 font-extrabold">{blog.title}</h2>
-                                <p>{blog.shortDescription}</p>
+                                <h2 className="text-xl sm:text-2xl text-yellow-500 font-extrabold">{blog.title}</h2>
+                                <p className="text-sm">{blog.shortDescription}</p>
+                            </div>
+                            <div className="grow">
                                 <Link to={`/blogs/${blog._id}`}>
                                     <button className="flex items-center gap-2 text-yellow-500 mt-4">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
                                 </Link>
