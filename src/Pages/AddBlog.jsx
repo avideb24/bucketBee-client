@@ -67,8 +67,8 @@ const AddBlog = () => {
     return (
         <div className="max-w-7xl mx-auto">
             <NavBar></NavBar>
-            <div className="my-5">
-                <h2 className="text-center text-3xl text-yellow-500 font-bold pt-10 pb-2">Add Your Blog</h2>
+            <div className="my-1 sm:my-5 mx-4">
+                <h2 className="text-center text-2xl sm:text-3xl text-yellow-500 font-bold pt-10 pb-2">Add Your Blog</h2>
                 <div className='w-32 h-1 mx-auto bg-yellow-500 mb-8'></div>
                 <form className="max-w-5xl mx-auto space-y-3" onSubmit={handleBlogSubmit}>
                     <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="title" placeholder="Blog Title" /> <br />

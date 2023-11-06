@@ -60,48 +60,50 @@ const AllBlogs = () => {
     return (
         <div className="max-w-7xl mx-auto">
             <NavBar></NavBar>
-            <div className="pt-10 pb-10 flex justify-center gap-6">
-                <select onChange={handleSelect} className="bg-white text-[#08133a] px-4 py-2 rounded-md cursor-pointer">
-                    <option value="Food">Food</option>
-                    <option value="Travel">Travel</option>
-                    <option value="Education">Education</option>
-                    <option value="Lifestyle">Lifestyle</option>
-                </select>
-                <div className="max-w-xs">
-                    <form className="flex items-center" onSubmit={handleSearch}>
-                        <input className="bg-white text-[#08133a] w-[70%] h-10 px-4 rounded-tl-md rounded-bl-md outline-none" type="text" name="search" placeholder="Search By Title" required />
-                        <input className="bg-yellow-500 text-[#08133a] w-[30%] h-10 px-4 rounded-tr-md rounded-br-md cursor-pointer" type="submit" value="Search" />
-                    </form>
+            <div className="">
+                <div className="pt-10 pb-10 flex justify-center gap-6">
+                    <select onChange={handleSelect} className="bg-white text-[#08133a] px-4 py-2 rounded-md cursor-pointer">
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Education">Education</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                    </select>
+                    <div className="max-w-xs">
+                        <form className="flex items-center" onSubmit={handleSearch}>
+                            <input className="bg-white text-[#08133a] w-[70%] h-10 px-4 rounded-tl-md rounded-bl-md outline-none" type="text" name="search" placeholder="Search By Title" required />
+                            <input className="bg-yellow-500 text-[#08133a] w-[30%] h-10 px-4 rounded-tr-md rounded-br-md cursor-pointer" type="submit" value="Search" />
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div>
-                {
-                    filteredBlogs.length === 0 ?
-                        <div className="text-2xl text-yellow-500 font-bold text-center">
-                            No Blogs Added
-                        </div>
-                        :
-                        <div className="flex flex-wrap justify-center items-center gap-4 pb-16">
-                            {
-                                filteredBlogs.map(blog =>
-                                    <div key={blog._id} className="w-96 p-5 rounded-md bg-[#1d2c61]">
-                                        <img className="w-full h-52 object-cover rounded-md" src={blog.photo} alt="" />
-                                        <div className="p-3 pb-0 space-y-1">
-                                            <div className="flex justify-between items-center">
-                                                <p className="text-sm">{blog.category}</p>
-                                                <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
+                <div>
+                    {
+                        filteredBlogs.length === 0 ?
+                            <div className="text-2xl text-yellow-500 font-bold text-center">
+                                No Blogs Added
+                            </div>
+                            :
+                            <div className="flex flex-wrap justify-center items-center gap-4 pb-16">
+                                {
+                                    filteredBlogs.map(blog =>
+                                        <div key={blog._id} className="w-96 p-5 rounded-md bg-[#1d2c61]">
+                                            <img className="w-full h-52 object-cover rounded-md" src={blog.photo} alt="" />
+                                            <div className="p-3 pb-0 space-y-1">
+                                                <div className="flex justify-between items-center">
+                                                    <p className="text-sm">{blog.category}</p>
+                                                    <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
+                                                </div>
+                                                <h2 className="text-2xl text-yellow-500 font-extrabold">{blog.title}</h2>
+                                                <p>{blog.shortDescription}</p>
+                                                <Link to={`/blogs/${blog._id}`}>
+                                                    <button className="flex items-center gap-2 text-yellow-500">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
+                                                </Link>
                                             </div>
-                                            <h2 className="text-2xl text-yellow-500 font-extrabold">{blog.title}</h2>
-                                            <p>{blog.shortDescription}</p>
-                                            <Link to={`/blogs/${blog._id}`}>
-                                                <button className="flex items-center gap-2 text-yellow-500">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
-                                            </Link>
                                         </div>
-                                    </div>
-                                )
-                            }
-                        </div>
-                }
+                                    )
+                                }
+                            </div>
+                    }
+                </div>
             </div>
             <Footer></Footer>
         </div>
