@@ -75,7 +75,7 @@ const BlogDetails = () => {
                     <p className="max-w-md mx-auto">{shortDescription}</p>
                 </div>
                 <div>
-                    <img className="w-full h-96 object-cover rounded-md mb-2" src={photo} alt="" />
+                    <img className="w-full sm:h-72 md:h-80 lg:h-96 object-cover rounded-md mb-2" src={photo} alt="" />
                     <p className="text-sm text-yellow-500">{category}</p>
                 </div>
                 <div className="mt-3"><span className="text-xl">Description:</span> {longDescription}</div>

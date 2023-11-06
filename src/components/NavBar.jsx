@@ -179,7 +179,7 @@ const NavBar = () => {
                                     </div>
 
                                 </div>
-                                <Link onClick={handleLogOut} className="bg-yellow-500 text-[#08133a] font-bold px-2 sm:px-4 py-1 rounded-md" to='/'>Log Out</Link>
+                                <Link onClick={handleLogOut} className="bg-yellow-500 text-[#08133a] font-bold px-2 sm:px-4 py-1 text-xs sm:text-lg rounded-md" to='/'>Log Out</Link>
                             </div>
                             :
                             <Link className="bg-yellow-500 text-[#08133a] font-bold px-2 sm:px-4 py-1 rounded-md" to='/login'>Login</Link>

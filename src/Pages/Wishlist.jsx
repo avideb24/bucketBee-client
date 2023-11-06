@@ -85,11 +85,11 @@ const Wishlist = () => {
                                     wishlist.map(blog =>
                                         <div key={blog._id} className="flex flex-col md:flex-row gap-6 justify-between items-center  mx-auto p-4 bg-[#2c3b74] rounded-md mb-5">
                                             <div className="md:w-2/4 flex items-center gap-8">
-                                                <div>
-                                                    <img className="w-full rounded-md" src={blog.photo} alt="" />
+                                                <div className="w-1/2">
+                                                    <img className="w-full object-cover rounded-md" src={blog.photo} alt="" />
                                                     <p className="text-xs mt-2 text-center">{blog.category}</p>
                                                 </div>
-                                                <div className="">
+                                                <div className="w-1/2">
                                                     <p className="text-justify">{blog.shortDescription}</p>
                                                 </div>
                                             </div>
