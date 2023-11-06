@@ -7,21 +7,38 @@ import Swal from "sweetalert2";
 
 const BlogDetails = () => {
 
-    const { _id, title, photo, shortDescription, longDescription, category } = useLoaderData();
+    const { _id, title, photo, shortDescription, longDescription, category, userEmail } = useLoaderData();
 
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+
+    const [comments, setComments] = useState([]);
+
+    const [blogComments, setBlogComments] = useState([]);
 
     const [users, setUsers] = useState([]);
 
-    const loggedUser = users.find(userDB => userDB.userEmail === user.email);
+    const loggedUser = users.find(userDB => userDB.userEmail === user?.email);
 
-    console.log(loggedUser);
+    // console.log(loggedUser.userEmail);
+    // console.log(userEmail);
 
     useEffect(() => {
         fetch('http://localhost:5000/users')
-        .then(res => res.json())
-        .then(data => setUsers(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
+
+    useEffect(() => {
+        fetch('http://localhost:5000/comments')
+            .then(res => res.json())
+            .then(data => {
+                setComments(data);
+                const thisBlogComments = comments.filter(comment => comment._id === _id);
+                setBlogComments(thisBlogComments);
+            })
+    }, [_id, comments])
+
+
 
 
     const handleComment = e => {
@@ -29,23 +46,24 @@ const BlogDetails = () => {
 
         const commentText = e.target.commentBox.value;
 
-        const comment = { commentText, _id, userName: loggedUser.userName, userPhoto: loggedUser.userPhoto};
-        // console.log(comment);
+        const comment = { commentText, _id, userEmail: user.email, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto };
+        console.log(comment);
         fetch('http://localhost:5000/comments', {
             method: 'POST',
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(comment)
         })
-        .then(res => {
-            console.log(res);
-            Swal.fire({
-                icon: 'success',
-                title: 'Comment Added Successfully!',
+            .then(res => {
+                console.log(res);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Comment Added Successfully!',
+                })
+                e.target.reset();
             })
-        })
-        .then(err => console.error(err))
+            .then(err => console.error(err))
     }
 
     return (
@@ -62,12 +80,36 @@ const BlogDetails = () => {
                 </div>
                 <div className="mt-3"><span className="text-xl">Description:</span> {longDescription}</div>
                 <div className="w-full h-2 bg-slate-500 my-5 rounded-md"></div>
-                <div>
-                    <form onSubmit={handleComment} className="flex items-end gap-4">
-                        <textarea className="bg-white text-black rounded-md outline-none p-3" name="commentBox" id="" cols="50" rows="10" placeholder="Leave A Comment..."></textarea>
-                        <input className="bg-yellow-500 px-4 py-2 rounded-md text-black cursor-pointer h-10" type="submit" value="Comment" />
-                    </form>
+
+                <div className="my-4">
+                    {
+                        blogComments.map(comment =>
+                            <div key={comment._id} className="flex gap-5">
+                                <img className="w-9 h-9 object-cover rounded-full" src={comment.userPhoto} alt="" />
+                                <div>
+                                    <h2 className="text-yellow-500">{comment.userName}</h2>
+                                    <p className="text-sm">{comment.commentText}</p>
+                                </div>
+                            </div>
+                        )
+                    }
                 </div>
+
+                <div>
+                    {
+                        loggedUser?.userEmail === userEmail
+                            ?
+                            <p>You Can&apos;t Comment On Your Own Blog.</p>
+                            :
+                            <div>
+                                <form onSubmit={handleComment} className="flex items-end gap-4 mt-6">
+                                    <textarea className="bg-white text-black rounded-md outline-none p-3" name="commentBox" id="" cols="50" rows="10" placeholder="Leave A Comment..."></textarea>
+                                    <input className="bg-yellow-500 px-4 py-2 rounded-md text-black cursor-pointer h-10" type="submit" value="Comment" />
+                                </form>
+                            </div>
+                    }
+                </div>
+
             </div>
             <Footer></Footer>
         </div>

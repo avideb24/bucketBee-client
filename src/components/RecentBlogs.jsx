@@ -67,7 +67,7 @@ const RecentBlogs = () => {
                                 <h2 className="text-2xl text-yellow-500 font-extrabold">{blog.title}</h2>
                                 <p>{blog.shortDescription}</p>
                                 <Link to={`/blogs/${blog._id}`}>
-                                    <button className="flex items-center gap-2 text-yellow-500">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
+                                    <button className="flex items-center gap-2 text-yellow-500 mt-4">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
                                 </Link>
                             </div>
                         </div>

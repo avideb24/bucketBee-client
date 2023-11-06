@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Swal from "sweetalert2";
@@ -6,7 +6,20 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const AddBlog = () => {
 
-    const {userName, userPhoto} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+
+    const [loadedUsers, setLoadedUsers] = useState([]);
+
+    const loggedUser = loadedUsers.find(loadedUser => loadedUser?.userEmail === user?.email);
+
+    // console.log(loggedUser);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/users')
+        .then(res => res.json())
+        .then(data => setLoadedUsers(data))
+    },[])
+
 
     const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -26,27 +39,27 @@ const AddBlog = () => {
         const longDescription = form.longDescription.value;
         const category = selectedCategory;
 
-        const addedBlog = { title, photo, shortDescription, longDescription, category , userName, userPhoto };
+        const addedBlog = { title, photo, shortDescription, longDescription, category, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto, userEmail: user.email };
         console.log(addedBlog);
 
         fetch('http://localhost:5000/blogs', {
             method: 'POST',
-            headers:{
+            headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(addedBlog)
         })
-        .then(res=> {
-            console.log(res);
-            Swal.fire({
-                icon: 'success',
-                title: 'Blog Added Successfully!',
+            .then(res => {
+                console.log(res);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Blog Added Successfully!',
+                })
+                form.reset();
             })
-            form.reset();
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            .catch(err => {
+                console.log(err);
+            })
 
     }
 
