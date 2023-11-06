@@ -69,9 +69,9 @@ const BlogDetails = () => {
     return (
         <div className="max-w-7xl mx-auto">
             <NavBar></NavBar>
-            <div className="p-6 mx-5 bg-[#283669] rounded-md my-10">
+            <div className="p-6 mx-5 bg-[#283669] rounded-md my-5 sm:my-10 text-sm sm:text-md">
                 <div className="text-center mb-6">
-                    <h2 className="text-3xl text-yellow-500 font-bold mb-2">{title}</h2>
+                    <h2 className="text-2xl sm:text-3xl text-yellow-500 font-bold mb-2">{title}</h2>
                     <p className="max-w-md mx-auto">{shortDescription}</p>
                 </div>
                 <div>
@@ -99,11 +99,11 @@ const BlogDetails = () => {
                     {
                         loggedUser?.userEmail === userEmail
                             ?
-                            <p>You Can&apos;t Comment On Your Own Blog.</p>
+                            <p className="text-red-600">You Can&apos;t Comment On Your Own Blog.</p>
                             :
-                            <div>
+                            <div className="max-w-lg">
                                 <form onSubmit={handleComment} className="flex items-end gap-4 mt-6">
-                                    <textarea className="bg-white text-black rounded-md outline-none p-3" name="commentBox" id="" cols="50" rows="10" placeholder="Leave A Comment..."></textarea>
+                                    <textarea className="bg-white text-black rounded-md outline-none p-3 w-full" name="commentBox"  placeholder="Leave A Comment..."></textarea>
                                     <input className="bg-yellow-500 px-4 py-2 rounded-md text-black cursor-pointer h-10" type="submit" value="Comment" />
                                 </form>
                             </div>
