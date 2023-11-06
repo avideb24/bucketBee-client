@@ -72,32 +72,40 @@ const Wishlist = () => {
     return (
         <div>
             <NavBar></NavBar>
-            <div className="max-w-7xl mx-auto py-16">
-                {
-                    wishlist.length === 0 ?
-                        <div className="text-2xl text-yellow-500 font-bold text-center">
-                            No Blogs Here
-                        </div>
-                        :
-                        <div>
-                            {
-                                wishlist.map(blog =>
-                                    <div key={blog._id} className="grid grid-cols-5 items-center justify-items-center w-4/5 mx-auto p-4 bg-[#2c3b74] rounded-md mb-5">
-                                        <div>
-                                            <img className="w-32 h-32 object-contain rounded-md" src={blog.photo} alt="" />
-                                            <p className="text-xs mt-2 text-center">{blog.category}</p>
+            <div className="max-w-7xl mx-auto py-6 sm:py-16">
+                <div className="mx-4">
+                    {
+                        wishlist.length === 0 ?
+                            <div className="text-2xl text-yellow-500 font-bold text-center">
+                                No Blogs Here
+                            </div>
+                            :
+                            <div className="text-xs sm:text-sm md:text-md">
+                                {
+                                    wishlist.map(blog =>
+                                        <div key={blog._id} className="flex flex-col md:flex-row gap-6 justify-between items-center  mx-auto p-4 bg-[#2c3b74] rounded-md mb-5">
+                                            <div className="md:w-2/4 flex items-center gap-8">
+                                                <div>
+                                                    <img className="w-full rounded-md" src={blog.photo} alt="" />
+                                                    <p className="text-xs mt-2 text-center">{blog.category}</p>
+                                                </div>
+                                                <div className="">
+                                                    <p className="text-justify">{blog.shortDescription}</p>
+                                                </div>
+                                            </div>
+                                            <div className="grid grid-cols-3 justify-items-center items-center w-full md:w-2/4">
+                                                <h2 className="text-md sm:text-xl text-yellow-500 font-bold">{blog.title}</h2>
+                                                <Link to={`/blogs/${blog._id}`}>
+                                                    <button className="px-3 py-1 text-[#08133a] bg-yellow-500 rounded-md">Details</button>
+                                                </Link>
+                                                <button className="text-4xl text-yellow-500" onClick={() => handleDelete(blog._id)}><AiFillCloseCircle></AiFillCloseCircle></button>
+                                            </div>
                                         </div>
-                                        <h2 className="text-xl text-yellow-500 font-bold">{blog.title}</h2>
-                                        <p>{blog.shortDescription}</p>
-                                        <Link to={`/blogs/${blog._id}`}>
-                                            <button className="px-3 py-1 text-[#08133a] bg-yellow-500 rounded-md">Details</button>
-                                        </Link>
-                                        <button className="text-4xl text-yellow-500" onClick={() => handleDelete(blog._id)}><AiFillCloseCircle></AiFillCloseCircle></button>
-                                    </div>
-                                )
-                            }
-                        </div>
-                }
+                                    )
+                                }
+                            </div>
+                    }
+                </div>
             </div>
             <Footer></Footer>
         </div>
