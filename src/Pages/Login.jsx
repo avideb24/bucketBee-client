@@ -3,16 +3,24 @@ import NavBar from "../components/NavBar";
 import googleLogo from "../images/googleLogo.png";
 import { GoogleAuthProvider } from "firebase/auth";
 import Swal from "sweetalert2";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const Login = () => {
+
+    const [users, setUsers] = useState([]);
 
     const location = useLocation();
 
     const navigate = useNavigate();
 
     const { signInUser, googleSignIn } = useContext(AuthContext);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/users')
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [])
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -43,7 +51,26 @@ const Login = () => {
     const handleGoogleSignIn = () => {
         googleSignIn(googleProvider)
             .then(res => {
-                console.log(res)
+                console.log(res.user);
+
+                const loggedUser = res.user;
+
+                const oldUser = users.find(user => user.userEmail === loggedUser.email);
+
+                if (!oldUser) {
+                    const newUser = { userEmail: loggedUser.email, userName: loggedUser.displayName, userPhoto: loggedUser.photoURL };
+                    console.log(newUser);
+                    fetch('http://localhost:5000/users', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(newUser)
+                    })
+                        .then(res => console.log(res))
+                        .catch(err => console.error(err))
+                }
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Successfully!',

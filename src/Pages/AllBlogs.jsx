@@ -4,40 +4,62 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Swal from "sweetalert2";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 
 const AllBlogs = () => {
 
     const { user } = useContext(AuthContext);
 
+    const [userWishlist, setUserWishlist] = useState([]);
+
     const blogs = useLoaderData();
 
     const [filteredBlogs, setFilteredBlogs] = useState(blogs);
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setUserWishlist(data))
+    }, [user?.email])
+
     const handleWishlist = id => {
         const { _id, title, photo, category, shortDescription } = blogs.find(blog => blog._id === id);
-        const wishlistedBlog = { _id, title, photo, category, shortDescription, email: user.email };
-        fetch('http://localhost:5000/wishlist', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(wishlistedBlog)
-        })
-            .then(res => {
-                console.log(res);
-                if (res.ok) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Wishlisted Successfully!',
-                    })
-                }
-            })
-            .catch(err => {
-                console.error(err);
-            })
+        const wishlistedBlog = { blog_id: _id, title, photo, category, shortDescription, email: user.email };
 
+        const addedBlog = userWishlist.find(blog => blog.blog_id === id);
+
+        // console.log(addedBlog);
+
+        if (addedBlog) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Already Added!',
+            })
+        }
+
+        else if (!addedBlog) {
+            fetch('http://localhost:5000/wishlist', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(wishlistedBlog)
+            })
+                .then(res => {
+                    console.log(res);
+                    if (res.ok) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Wishlisted Successfully!',
+                        })
+                    }
+                    setUserWishlist([...userWishlist, wishlistedBlog]);
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        }
     }
 
     const handleSelect = e => {

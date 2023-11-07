@@ -33,12 +33,10 @@ const BlogDetails = () => {
             .then(res => res.json())
             .then(data => {
                 setComments(data);
-                const thisBlogComments = comments.filter(comment => comment._id === _id);
+                const thisBlogComments = comments.filter(comment => comment.blog_id === _id);
                 setBlogComments(thisBlogComments);
             })
     }, [_id, comments])
-
-
 
 
     const handleComment = e => {
@@ -46,8 +44,8 @@ const BlogDetails = () => {
 
         const commentText = e.target.commentBox.value;
 
-        const comment = { commentText, _id, userEmail: user.email, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto };
-        console.log(comment);
+        const comment = { commentText, blog_id: _id, userEmail: user.email, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto };
+        // console.log(comment);
         fetch('http://localhost:5000/comments', {
             method: 'POST',
             headers: {
@@ -62,9 +60,12 @@ const BlogDetails = () => {
                     title: 'Comment Added Successfully!',
                 })
                 e.target.reset();
+                setBlogComments([...blogComments, comment])
+
             })
             .then(err => console.error(err))
     }
+
 
     return (
         <div className="max-w-7xl mx-auto">
@@ -94,7 +95,7 @@ const BlogDetails = () => {
                 <div className="my-4">
                     {
                         blogComments.map(comment =>
-                            <div key={comment._id} className="flex gap-5">
+                            <div key={comment._id} className="flex gap-5 mb-3">
                                 <img className="w-9 h-9 object-cover rounded-full" src={comment.userPhoto} alt="" />
                                 <div>
                                     <h2 className="text-yellow-500">{comment.userName}</h2>
