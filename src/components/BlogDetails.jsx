@@ -5,6 +5,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import 'react-photo-view/dist/react-photo-view.css';
 
 const BlogDetails = () => {
 
@@ -81,7 +83,11 @@ const BlogDetails = () => {
                         <p className="max-w-md mx-auto">{shortDescription}</p>
                     </div>
                     <div>
-                        <img className="w-full sm:h-72 md:h-80 lg:h-96 object-cover rounded-md mb-2" src={photo} alt="" />
+                        <PhotoProvider>
+                            <PhotoView src={photo}>
+                                <img className="w-full sm:h-72 md:h-80 lg:h-96 cursor-pointer object-cover rounded-md mb-2" src={photo} alt="" />
+                            </PhotoView>
+                        </PhotoProvider>
                         <p className="text-sm text-[#539aa0]">{category}</p>
                     </div>
                     <div className="mt-3"><span className="text-xl">Description:</span> {longDescription}</div>
@@ -101,7 +107,11 @@ const BlogDetails = () => {
                         {
                             blogComments.map(comment =>
                                 <div key={comment._id} className="flex gap-5 mb-3">
-                                    <img className="w-9 h-9 object-cover rounded-full" src={comment.userPhoto} alt="" />
+                                    <PhotoProvider>
+                                        <PhotoView src={comment.userPhoto}>
+                                            <img className="w-9 h-9 object-cover cursor-pointer rounded-full" src={comment.userPhoto} alt="" />
+                                        </PhotoView>
+                                    </PhotoProvider>
                                     <div>
                                         <h2 className="text-[#539aa0]">{comment.userName}</h2>
                                         <p className="text-sm">{comment.commentText}</p>

@@ -24,6 +24,8 @@ const Home = () => {
                         <title>BucketBee</title>
                     </Helmet>
             }
+            <div>
+            </div>
             <NavBar></NavBar>
             <Banner></Banner>
             <RecentBlogs></RecentBlogs>

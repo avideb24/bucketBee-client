@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import 'react-photo-view/dist/react-photo-view.css';
 
 const AllBlogs = () => {
 
@@ -113,7 +115,11 @@ const AllBlogs = () => {
                                     {
                                         filteredBlogs.map(blog =>
                                             <div key={blog._id} className="w-96 p-5 rounded-md hover:scale-105 duration-200 border-2 border-[#539aa0] text-[#539aa0]">
-                                                <img className="w-full h-52 object-cover rounded-md" src={blog.photo} alt="" />
+                                                <PhotoProvider>
+                                                    <PhotoView src={blog.photo}>
+                                                        <img className="w-full h-52 object-cover cursor-pointer rounded-md" src={blog.photo} alt="" />
+                                                    </PhotoView>
+                                                </PhotoProvider>
                                                 <div className="p-3 pb-0 space-y-1">
                                                     <div className="flex justify-between items-center">
                                                         <p className="text-xs sm:text-sm">{blog.category}</p>

@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import 'react-photo-view/dist/react-photo-view.css';
 
 const NavBar = () => {
 
@@ -17,11 +19,11 @@ const NavBar = () => {
 
     useEffect(() => {
         fetch('http://localhost:5000/users')
-        .then(res => res.json())
-        .then(data => setLoadedUsers(data))
+            .then(res => res.json())
+            .then(data => setLoadedUsers(data))
 
-        
-    },[])
+
+    }, [])
 
 
 
@@ -146,7 +148,7 @@ const NavBar = () => {
                             </NavLink>
                         </li>
                         <li>
-                        <NavLink
+                            <NavLink
                                 to="/wishlist"
                                 className={({ isActive, isPending }) =>
                                     isPending ? "pending" : isActive ? "text-[#539aa0] font-bold underline" : ""
@@ -166,15 +168,20 @@ const NavBar = () => {
                                     <div>
                                         {
                                             loggedUser ? <p className="text-[#539aa0] text-xs sm:text-lg">{loggedUser?.userName}</p>
-                                            :
-                                            ''
+                                                :
+                                                ''
                                         }
                                     </div>
                                     <div>
                                         {
-                                            loggedUser ? <img className="w-8 h-8 object-cover rounded-full" src={loggedUser?.userPhoto} alt="" />
-                                            :
-                                            ''
+                                            loggedUser ?
+                                                <PhotoProvider>
+                                                    <PhotoView src={loggedUser?.userPhoto}>
+                                                        <img className="w-8 h-8 object-cover rounded-full cursor-pointer" src={loggedUser?.userPhoto} alt="" />
+                                                    </PhotoView>
+                                                </PhotoProvider>
+                                                :
+                                                ''
                                         }
                                     </div>
 
