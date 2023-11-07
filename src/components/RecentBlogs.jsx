@@ -4,6 +4,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"
 
 const RecentBlogs = () => {
 
@@ -76,14 +77,18 @@ const RecentBlogs = () => {
 
     return (
         <div className="max-w-7xl mx-auto py-8 sm:py-16">
-            <h2 className="text-2xl sm:text-3xl text-[#363636] font-bold pt-2 sm:pt-10 pb-2">Recent Blogs</h2>
-            <div className='w-full h-1 mx-auto bg-[#363636] mb-8'></div>
+            <h2 className="text-2xl sm:text-3xl text-[#363636] font-bold pt-2 sm:pt-10 pb-2 mx-4">Recent Blogs</h2>
+            <div className='w-full h-1 bg-[#363636] mb-8 mx-4'></div>
             <div>
                 {
                     blogs.length === 0 ?
                         <p className="text-2xl text-[#363636] font-normal text-center my-10">No Blogs Added!</p>
                         :
-                        <div className="flex flex-wrap justify-center items-start gap-4">
+                        <motion.div className="flex flex-wrap justify-center items-start gap-4"
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.9 }}
+                        >
                             {
                                 blogs.slice(0, 6).map(blog =>
                                     <div key={blog._id} className="w-96 p-5 mx-4 sm:mx-0 rounded-md hover:scale-105 duration-200 border-2 border-[#539aa0] flex flex-col">
@@ -111,7 +116,7 @@ const RecentBlogs = () => {
                                     </div>
                                 )
                             }
-                        </div>
+                        </motion.div>
                 }
             </div>
         </div>

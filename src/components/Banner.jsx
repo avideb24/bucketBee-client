@@ -1,8 +1,12 @@
 import bannerImg from '../images/banner-image.jpg'
+import { motion } from "framer-motion"
 
 const Banner = () => {
     return (
-        <div>
+        <motion.div
+        animate={{ x: [100, 0] }}
+        transition={{ ease: "easeOut", duration: 0.8 }}
+        >
             <div className='relative'>
                 <img className='lg:h-96 w-full object-cover' src={bannerImg} alt="" />
                 <div className='absolute w-full h-full left-0 top-0'>
@@ -15,7 +19,7 @@ const Banner = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

@@ -3,10 +3,12 @@ import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const UpdatePage = () => {
+
+    const nagivate = useNavigate();
 
     const { _id, title, photo, shortDescription, longDescription, category } = useLoaderData();
 
@@ -61,6 +63,7 @@ const UpdatePage = () => {
                     title: 'Updated Successfully!',
                 })
                 form.reset();
+                nagivate(`/blogs/${_id}`)
             })
             .catch(err => {
                 console.log(err);
