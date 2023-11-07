@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Wishlist = () => {
 
@@ -71,19 +72,22 @@ const Wishlist = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Wishlist</title>
+            </Helmet>
             <NavBar></NavBar>
             <div className="max-w-7xl mx-auto py-6 sm:py-16">
                 <div className="mx-4">
                     {
                         wishlist.length === 0 ?
-                            <div className="text-2xl text-yellow-500 font-bold text-center">
+                            <div className="text-2xl text-black font-bold text-center">
                                 No Blogs Here
                             </div>
                             :
                             <div className="text-xs sm:text-sm md:text-md">
                                 {
                                     wishlist.map(blog =>
-                                        <div key={blog._id} className="flex flex-col md:flex-row gap-6 justify-between items-center  mx-auto p-4 bg-[#2c3b74] rounded-md mb-5">
+                                        <div key={blog._id} className="flex flex-col md:flex-row gap-6 justify-between items-center  mx-auto p-4 bg-white border-2 border-[#539aa0] text-[#539aa0] rounded-md mb-5">
                                             <div className="md:w-2/4 flex items-center gap-8">
                                                 <div className="w-1/2">
                                                     <img className="w-full h-20 sm:w-full sm:h-20 md:h-36 lg:h-40 object-cover rounded-md" src={blog.photo} alt="" />
@@ -93,19 +97,19 @@ const Wishlist = () => {
                                                     <p className="text-justify">
                                                         {
                                                             blog.shortDescription.length < 60 ?
-                                                            <p>{blog.shortDescription}</p>
-                                                            :
-                                                            <p>{blog.shortDescription.slice(0, 60)}...</p>
+                                                                <p>{blog.shortDescription}</p>
+                                                                :
+                                                                <p>{blog.shortDescription.slice(0, 60)}...</p>
                                                         }
                                                     </p>
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-3 justify-items-center items-center w-full md:w-2/4">
-                                                <h2 className="text-md sm:text-xl text-yellow-500 font-bold">{blog.title}</h2>
+                                                <h2 className="text-md sm:text-xl text-[#539aa0] font-bold">{blog.title}</h2>
                                                 <Link to={`/blogs/${blog._id}`}>
-                                                    <button className="px-3 py-1 text-[#08133a] bg-yellow-500 rounded-md">Details</button>
+                                                    <button className="px-3 py-1 text-[#08133a] bg-[#539aa0]  rounded-md">Details</button>
                                                 </Link>
-                                                <button className="text-4xl text-yellow-500" onClick={() => handleDelete(blog._id)}><AiFillCloseCircle></AiFillCloseCircle></button>
+                                                <button className="text-4xl text-[#539aa0]" onClick={() => handleDelete(blog._id)}><AiFillCloseCircle></AiFillCloseCircle></button>
                                             </div>
                                         </div>
                                     )

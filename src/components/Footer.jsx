@@ -2,7 +2,7 @@
 const Footer = () => {
     return (
         <div className="text-md sm:text-lg">
-            <footer className="footer footer-center p-10 bg-[#08133a] text-white rounded">
+            <footer className="footer footer-center p-10 bg-[#539aa0] text-white">
                 <nav className="grid grid-flow-col gap-4">
                     <button to='/about'>About</button>
                     <button to='/contact'>Contact</button>

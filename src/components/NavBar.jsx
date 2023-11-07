@@ -41,7 +41,7 @@ const NavBar = () => {
     }
 
     return (
-        <div className="bg-[#08133a] text-white px-2 sm:px-6">
+        <div className="bg-white text-[#6e98a9] px-2 sm:px-6">
             <div className="navbar max-w-7xl mx-auto px-0">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -109,7 +109,7 @@ const NavBar = () => {
                             <NavLink
                                 to="/"
                                 className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-yellow-500 font-bold underline" : ""
+                                    isPending ? "pending" : isActive ? "text-[#539aa0] font-bold underline" : ""
                                 }
                             >
                                 Home
@@ -119,7 +119,7 @@ const NavBar = () => {
                             <NavLink
                                 to="/addBlog"
                                 className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-yellow-500 font-bold underline" : ""
+                                    isPending ? "pending" : isActive ? "text-[#539aa0] font-bold underline" : ""
                                 }
                             >
                                 Add Blog
@@ -129,7 +129,7 @@ const NavBar = () => {
                             <NavLink
                                 to="/allBlogs"
                                 className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-yellow-500 font-bold underline" : ""
+                                    isPending ? "pending" : isActive ? "text-[#539aa0] font-bold underline" : ""
                                 }
                             >
                                 All Blogs
@@ -139,17 +139,17 @@ const NavBar = () => {
                             <NavLink
                                 to="/featuredBlogs"
                                 className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-yellow-500 font-bold underline" : ""
+                                    isPending ? "pending" : isActive ? "text-[#539aa0] font-bold underline" : ""
                                 }
                             >
                                 Featured Blogs
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink
+                        <NavLink
                                 to="/wishlist"
                                 className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-yellow-500 font-bold underline" : ""
+                                    isPending ? "pending" : isActive ? "text-[#539aa0] font-bold underline" : ""
                                 }
                             >
                                 Wishlist
@@ -165,7 +165,7 @@ const NavBar = () => {
 
                                     <div>
                                         {
-                                            loggedUser ? <p className="text-yellow-500 text-xs sm:text-lg">{loggedUser?.userName}</p>
+                                            loggedUser ? <p className="text-[#539aa0] text-xs sm:text-lg">{loggedUser?.userName}</p>
                                             :
                                             ''
                                         }
@@ -179,10 +179,10 @@ const NavBar = () => {
                                     </div>
 
                                 </div>
-                                <Link onClick={handleLogOut} className="bg-yellow-500 text-[#08133a] font-bold px-2 sm:px-4 py-1 text-xs sm:text-lg rounded-md" to='/'>Log Out</Link>
+                                <Link onClick={handleLogOut} className="bg-[#539aa0] text-black  px-2 sm:px-4 py-1 text-xs sm:text-lg rounded-md" to='/'>Log Out</Link>
                             </div>
                             :
-                            <Link className="bg-yellow-500 text-[#08133a] font-bold px-2 sm:px-4 py-1 rounded-md" to='/login'>Login</Link>
+                            <Link className="bg-[#539aa0] text-black px-2 sm:px-4 py-1 rounded-md" to='/login'>Login</Link>
                     }
                 </div>
             </div>

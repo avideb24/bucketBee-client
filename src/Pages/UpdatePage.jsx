@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const UpdatePage = () => {
 
@@ -19,9 +20,9 @@ const UpdatePage = () => {
 
     useEffect(() => {
         fetch('http://localhost:5000/users')
-        .then(res => res.json())
-        .then(data => setLoadedUsers(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setLoadedUsers(data))
+    }, [])
 
 
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -68,27 +69,32 @@ const UpdatePage = () => {
 
 
     return (
-        <div className="max-w-7xl mx-auto">
-        <NavBar></NavBar>
-        <div className="my-1 sm:my-5 mx-4">
-            <h2 className="text-center text-2xl sm:text-3xl text-yellow-500 font-bold pt-10 pb-2">Add Your Blog</h2>
-            <div className='w-32 h-1 mx-auto bg-yellow-500 mb-8'></div>
-            <form className="max-w-5xl mx-auto space-y-3" onSubmit={handleUpdateBlog}>
-                <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="title" placeholder="Blog Title" defaultValue={title} /> <br />
-                <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="photo" placeholder="Image URL" defaultValue={photo} /> <br />
-                <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="shortDescription" placeholder="Short Description" defaultValue={shortDescription} /> <br />
-                <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="longDescription" placeholder="Long Description" defaultValue={longDescription} /> <br />
-                <select onChange={handleCategory} defaultValue={category} className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md">
-                    <option value="Food">Food</option>
-                    <option value="Travel">Travel</option>
-                    <option value="Education">Education</option>
-                    <option value="Lifestyle">Lifestyle</option>
-                </select>
-                <input type="submit" className="w-full h-10 px-4 outline-none bg-yellow-500 text-black font-bold rounded-md cursor-pointer" value="Update" />
-            </form>
+        <div>
+            <Helmet>
+                <title>Update Blog</title>
+            </Helmet>
+            <NavBar></NavBar>
+            <div className="max-w-7xl mx-auto">
+                <div className="my-1 sm:my-5 mx-4">
+                    <h2 className="text-center text-2xl sm:text-3xl text-[#363636] font-bold pt-10 pb-2">Add Your Blog</h2>
+                    <div className='w-32 h-1 mx-auto bg-[#363636] mb-8'></div>
+                    <form className="max-w-5xl mx-auto space-y-3 text-[#363636]" onSubmit={handleUpdateBlog}>
+                        <input type="text" className="w-full h-10 px-4 border-2 outline-none bg-white border-[#539aa0] font-normal rounded-md" name="title" placeholder="Blog Title" defaultValue={title} /> <br />
+                        <input type="text" className="w-full h-10 px-4 border-2 outline-none bg-white border-[#539aa0] font-normal rounded-md" name="photo" placeholder="Image URL" defaultValue={photo} /> <br />
+                        <input type="text" className="w-full h-10 px-4 border-2 outline-none bg-white border-[#539aa0] font-normal rounded-md" name="shortDescription" placeholder="Short Description" defaultValue={shortDescription} /> <br />
+                        <input type="text" className="w-full h-10 px-4 border-2 outline-none bg-white border-[#539aa0] font-normal rounded-md" name="longDescription" placeholder="Long Description" defaultValue={longDescription} /> <br />
+                        <select onChange={handleCategory} defaultValue={category} className="w-full h-10 px-4 border-2 outline-none bg-white border-[#539aa0] font-normal rounded-md">
+                            <option value="Food">Food</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Education">Education</option>
+                            <option value="Lifestyle">Lifestyle</option>
+                        </select>
+                        <input type="submit" className="w-full h-10 px-4 outline-none bg-[#539aa0] text-[#363636] font-bold rounded-md cursor-pointer" value="Update" />
+                    </form>
+                </div>
+            </div>
+            <Footer></Footer>
         </div>
-        <Footer></Footer>
-    </div>
     );
 };
 

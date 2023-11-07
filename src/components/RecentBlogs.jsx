@@ -76,24 +76,24 @@ const RecentBlogs = () => {
 
     return (
         <div className="max-w-7xl mx-auto py-8 sm:py-16">
-            <h2 className="text-center text-2xl sm:text-3xl text-yellow-500 font-bold pt-2 sm:pt-10 pb-2">Recent Blogs</h2>
-            <div className='w-32 h-1 mx-auto bg-yellow-500 mb-8'></div>
+            <h2 className="text-2xl sm:text-3xl text-[#363636] font-bold pt-2 sm:pt-10 pb-2">Recent Blogs</h2>
+            <div className='w-full h-1 mx-auto bg-[#363636] mb-8'></div>
             <div>
                 {
                     blogs.length === 0 ?
-                        <p className="text-2xl text-white font-normal text-center my-10">No Blogs Added!</p>
+                        <p className="text-2xl text-[#363636] font-normal text-center my-10">No Blogs Added!</p>
                         :
                         <div className="flex flex-wrap justify-center items-start gap-4">
                             {
                                 blogs.slice(0, 6).map(blog =>
-                                    <div key={blog._id} className="w-96 p-5 mx-4 sm:mx-0 rounded-md bg-[#1d2c61] flex flex-col">
+                                    <div key={blog._id} className="w-96 p-5 mx-4 sm:mx-0 rounded-md hover:scale-105 duration-200 border-2 border-[#539aa0] flex flex-col">
                                         <img className="w-full h-52 object-cover rounded-md" src={blog.photo} alt="" />
                                         <div className="p-3 pb-0 space-y-1">
                                             <div className="flex justify-between items-center">
                                                 <p className="text-xs sm:text-sm">{blog.category}</p>
-                                                <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
+                                                <button className="text-[#539aa0]" onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
                                             </div>
-                                            <h2 className="text-xl sm:text-2xl text-yellow-500 font-extrabold">{blog.title}</h2>
+                                            <h2 className="text-xl sm:text-2xl text-[#363636] italic font-extrabold">{blog.title}</h2>
                                             <div>
                                                 {
                                                     blog.shortDescription.length < 40 ?
@@ -105,7 +105,7 @@ const RecentBlogs = () => {
                                         </div>
                                         <div className="grow">
                                             <Link to={`/blogs/${blog._id}`}>
-                                                <button className="flex items-center gap-2 text-yellow-500 mt-4">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
+                                                <button className="flex items-center gap-2 text-[#363636] mt-4">Read More <span className="mt-1 font-extrabold text-xl text-[#363636] "><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
                                             </Link>
                                         </div>
                                     </div>

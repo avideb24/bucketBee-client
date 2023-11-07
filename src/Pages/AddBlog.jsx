@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const AddBlog = () => {
 
@@ -16,9 +17,9 @@ const AddBlog = () => {
 
     useEffect(() => {
         fetch('http://localhost:5000/users')
-        .then(res => res.json())
-        .then(data => setLoadedUsers(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setLoadedUsers(data))
+    }, [])
 
 
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -64,24 +65,29 @@ const AddBlog = () => {
 
 
     return (
-        <div className="max-w-7xl mx-auto">
+        <div>
+            <Helmet>
+                <title>Add Blog</title>
+            </Helmet>
             <NavBar></NavBar>
-            <div className="my-1 sm:my-5 mx-4">
-                <h2 className="text-center text-2xl sm:text-3xl text-yellow-500 font-bold pt-10 pb-2">Add Your Blog</h2>
-                <div className='w-32 h-1 mx-auto bg-yellow-500 mb-8'></div>
-                <form className="max-w-5xl mx-auto space-y-3" onSubmit={handleBlogSubmit}>
-                    <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="title" placeholder="Blog Title" /> <br />
-                    <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="photo" placeholder="Image URL" /> <br />
-                    <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="shortDescription" placeholder="Short Description" /> <br />
-                    <input type="text" className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md" name="longDescription" placeholder="Long Description" /> <br />
-                    <select onChange={handleCategory} className="w-full h-10 px-4 outline-none bg-white text-black font-normal rounded-md">
-                        <option value="Food">Food</option>
-                        <option value="Travel">Travel</option>
-                        <option value="Education">Education</option>
-                        <option value="Lifestyle">Lifestyle</option>
-                    </select>
-                    <input type="submit" className="w-full h-10 px-4 outline-none bg-yellow-500 text-black font-bold rounded-md cursor-pointer" value="Submit" />
-                </form>
+            <div className="max-w-7xl mx-auto">
+                <div className="my-1 sm:my-5 py-5 sm:py-10 mx-4">
+                    <h2 className="text-center text-2xl sm:text-3xl  text-[#363636] font-bold pb-2">Add Your Blog</h2>
+                    <div className='w-32 h-1 mx-auto bg-[#539aa0] mb-8'></div>
+                    <form className="max-w-5xl mx-auto space-y-3" onSubmit={handleBlogSubmit}>
+                        <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="title" placeholder="Blog Title" /> <br />
+                        <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="photo" placeholder="Image URL" /> <br />
+                        <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="shortDescription" placeholder="Short Description" /> <br />
+                        <input type="text" className="w-full h-10 px-4 outline-none border-2 border-[#539aa0] bg-white text-black font-normal rounded-md" name="longDescription" placeholder="Long Description" /> <br />
+                        <select onChange={handleCategory} className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md">
+                            <option value="Food">Food</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Education">Education</option>
+                            <option value="Lifestyle">Lifestyle</option>
+                        </select>
+                        <input type="submit" className="w-full h-10 px-4 outline-none bg-[#539aa0] text-black font-bold rounded-md cursor-pointer" value="Submit" />
+                    </form>
+                </div>
             </div>
             <Footer></Footer>
         </div>
