@@ -11,9 +11,7 @@ const Recommended = () => {
             .then(res => res.json())
             .then(data => setBlogs(data))
     }, [])
-
-
-    console.log(blogs);
+    
 
     return (
         <div className="max-w-7xl mx-auto pb-10">

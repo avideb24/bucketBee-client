@@ -36,11 +36,11 @@ const RecentBlogs = () => {
 
     const handleWishlist = id => {
         const { _id, title, photo, category, shortDescription } = blogs.find(blog => blog._id === id);
-        const wishlistedBlog = { _id, title, photo, category, shortDescription, email: user.email };
+        const wishlistedBlog = { blog_id: _id, title, photo, category, shortDescription, email: user.email };
 
-        const addedBlog = userWishlist.find(blog => blog._id === id);
+        const addedBlog = userWishlist.find(blog => blog.blog_id === id);
 
-        console.log(addedBlog);
+        // console.log(addedBlog);
 
         if (addedBlog) {
             Swal.fire({
@@ -65,6 +65,7 @@ const RecentBlogs = () => {
                             title: 'Wishlisted Successfully!',
                         })
                     }
+                    setUserWishlist([...userWishlist, wishlistedBlog]);
                 })
                 .catch(err => {
                     console.error(err);

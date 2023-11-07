@@ -86,11 +86,18 @@ const Wishlist = () => {
                                         <div key={blog._id} className="flex flex-col md:flex-row gap-6 justify-between items-center  mx-auto p-4 bg-[#2c3b74] rounded-md mb-5">
                                             <div className="md:w-2/4 flex items-center gap-8">
                                                 <div className="w-1/2">
-                                                    <img className="w-full object-cover rounded-md" src={blog.photo} alt="" />
+                                                    <img className="w-full h-20 sm:w-full sm:h-20 md:h-36 lg:h-40 object-cover rounded-md" src={blog.photo} alt="" />
                                                     <p className="text-xs mt-2 text-center">{blog.category}</p>
                                                 </div>
                                                 <div className="w-1/2">
-                                                    <p className="text-justify">{blog.shortDescription}</p>
+                                                    <p className="text-justify">
+                                                        {
+                                                            blog.shortDescription.length < 60 ?
+                                                            <p>{blog.shortDescription}</p>
+                                                            :
+                                                            <p>{blog.shortDescription.slice(0, 60)}...</p>
+                                                        }
+                                                    </p>
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-3 justify-items-center items-center w-full md:w-2/4">
