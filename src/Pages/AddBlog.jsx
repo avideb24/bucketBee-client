@@ -73,7 +73,7 @@ const AddBlog = () => {
             <div className="max-w-7xl mx-auto">
                 <div className="my-1 sm:my-5 py-5 sm:py-10 mx-4">
                     <h2 className="text-center text-2xl sm:text-3xl  text-[#363636] font-bold pb-2">Add Your Blog</h2>
-                    <div className='w-32 h-1 mx-auto bg-[#539aa0] mb-8'></div>
+                    <div className='w-32 h-1 mx-auto bg-[#363636] mb-8'></div>
                     <form className="max-w-5xl mx-auto space-y-3" onSubmit={handleBlogSubmit}>
                         <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="title" placeholder="Blog Title" /> <br />
                         <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="photo" placeholder="Image URL" /> <br />

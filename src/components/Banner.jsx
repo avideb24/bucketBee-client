@@ -1,25 +1,29 @@
-import bannerImg from '../images/banner-image.jpg'
-import { motion } from "framer-motion"
+// import { motion } from "framer-motion";
+import './BannerText.css';
 
 const Banner = () => {
+
+    // animate={{ x: [100, 0] }}
+    // transition={{ ease: "easeOut", duration: 0.8 }}
+
     return (
-        <motion.div
-        animate={{ x: [100, 0] }}
-        transition={{ ease: "easeOut", duration: 0.8 }}
+        <div
+           
         >
-            <div className='relative'>
-                <img className='lg:h-96 w-full object-cover' src={bannerImg} alt="" />
-                <div className='absolute w-full h-full left-0 top-0'>
-                    <div className='flex h-full items-center'>
-                        <div className='max-w-lg space-y-1 sm:space-y-3 mx-7 '>
-                            <h3 className='text-lg sm:text-2xl lg:text-3xl'>Welcome To</h3>
-                            <h1 className='text-3xl sm:text-4xl lg:text-6xl italic text-yellow-500 font-bold'>BucketBee!!!</h1>
-                            <p className='text-xs sm:text-lg max-w-[300px] sm:max-w-none'>Discover, Learn, Taste, Travel. Your Ultimate Source for Food Delights, Educational Insights, and Globetrotting Adventures. Bucket Bee - Where Every Experience is a Sweet Drop in Life &apos;s Honey Pot!</p>
-                        </div>
+            <div className="bg-slate-200 py-16">
+                <div className='max-w-3xl mx-auto  px-7 '>
+                    <div className="flex justify-start">
+                        <h3 className='text-lg sm:text-2xl lg:text-3xl text-[#266166] mb-3'>Welcome To</h3>
+                    </div>
+                    <div className="flex justify-center">
+                        <h1 className='banner-title text-3xl sm:text-4xl lg:text-6xl italic font-bold flex items-center gap-1  sm:items-end'><p className="inline-block text-5xl sm:text-7xl md:text-9xl text-yellow-500 banner-b-text mb-5 md:my-0 sm:pb-0 md:pb-0 lg:pb-0">B</p><span>ucket</span><p className="inline-block text-5xl sm:text-7xl md:text-9xl text-yellow-500 banner-b-text mb-5 md:my-0 sm:pb-0 md:pb-0 lg:pb-0">B</p><span>ee!!!</span></h1>
+                    </div>
+                    <div className="flex justify-end text-[#347c83]">
+                        <p>Read, Write & Explore!</p>
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

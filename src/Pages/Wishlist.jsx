@@ -94,19 +94,19 @@ const Wishlist = () => {
                                                     <p className="text-xs mt-2 text-center">{blog.category}</p>
                                                 </div>
                                                 <div className="w-1/2">
-                                                    <p className="text-justify">
+                                                    <div className="text-justify">
                                                         {
                                                             blog.shortDescription.length < 60 ?
                                                                 <p>{blog.shortDescription}</p>
                                                                 :
                                                                 <p>{blog.shortDescription.slice(0, 60)}...</p>
                                                         }
-                                                    </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-3 justify-items-center items-center w-full md:w-2/4">
                                                 <h2 className="text-md sm:text-xl text-[#539aa0] font-bold">{blog.title}</h2>
-                                                <Link to={`/blogs/${blog._id}`}>
+                                                <Link to={`/blogs/${blog.blog_id}`}>
                                                     <button className="px-3 py-1 text-[#08133a] bg-[#539aa0]  rounded-md">Details</button>
                                                 </Link>
                                                 <button className="text-4xl text-[#539aa0]" onClick={() => handleDelete(blog._id)}><AiFillCloseCircle></AiFillCloseCircle></button>

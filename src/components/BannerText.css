@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.banner-title span{
+    color: #000;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    margin-bottom: 30px;
+}
+
+.banner-b-text{
+    font-family: 'Great Vibes', cursive;
+}

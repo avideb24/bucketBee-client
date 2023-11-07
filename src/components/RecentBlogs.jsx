@@ -76,7 +76,7 @@ const RecentBlogs = () => {
 
 
     return (
-        <div className="max-w-7xl mx-auto py-8 sm:py-16">
+        <div className="max-w-7xl mx-auto py-8 sm:pb-16">
             <h2 className="text-2xl sm:text-3xl text-[#363636] font-bold pt-2 sm:pt-10 pb-2 mx-4">Recent Blogs</h2>
             <div className='w-full h-1 bg-[#363636] mb-8 mx-4'></div>
             <div>
