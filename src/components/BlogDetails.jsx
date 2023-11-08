@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
+import favicon from '../images/favicon.png';
 
 const BlogDetails = () => {
 
@@ -74,6 +75,7 @@ const BlogDetails = () => {
         <div>
             <Helmet>
                 <title>{title}</title>
+                <link rel="icon" href={favicon} />
             </Helmet>
             <NavBar></NavBar>
             <div className="max-w-7xl mx-auto">
@@ -129,7 +131,7 @@ const BlogDetails = () => {
                                 :
                                 <div className="max-w-lg">
                                     <form onSubmit={handleComment} className="flex items-end gap-4 mt-6">
-                                        <textarea className="bg-white text-black rounded-md outline-none border-2 border-[#539aa0] p-3 w-full" name="commentBox" placeholder="Leave A Comment..."></textarea>
+                                        <textarea className="bg-white text-black rounded-md outline-none border-2 border-[#539aa0] p-3 w-full" name="commentBox" placeholder="Leave A Comment..." required ></textarea>
                                         <input className="bg-[#539aa0] px-4 py-2 rounded-md text-black cursor-pointer h-10" type="submit" value="Comment" />
                                     </form>
                                 </div>

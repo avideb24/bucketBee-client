@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
+import favicon from '../images/favicon.png';
 
 const Login = () => {
 
@@ -92,6 +93,7 @@ const Login = () => {
         <div>
             <Helmet>
                 <title>Login</title>
+                <link rel="icon" href={favicon} />
             </Helmet>
             <NavBar></NavBar>
             <div className="py-10 px-5">

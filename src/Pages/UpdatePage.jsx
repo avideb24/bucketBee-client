@@ -5,6 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import favicon from '../images/favicon.png';
 
 const UpdatePage = () => {
 
@@ -75,9 +76,10 @@ const UpdatePage = () => {
         <div>
             <Helmet>
                 <title>Update Blog</title>
+                <link rel="icon" href={favicon} />
             </Helmet>
             <NavBar></NavBar>
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-7xl mx-auto pb-6">
                 <div className="my-1 sm:my-5 mx-4">
                     <h2 className="text-center text-2xl sm:text-3xl text-[#363636] font-bold pt-10 pb-2">Add Your Blog</h2>
                     <div className='w-32 h-1 mx-auto bg-[#363636] mb-8'></div>

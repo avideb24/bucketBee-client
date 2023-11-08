@@ -28,11 +28,11 @@ const Recommended = () => {
                 <div>
                     {
                         loading ?
-                            <div className="grid grid-cols-4 gap-6">
-                                <Skeleton />
-                                <Skeleton />
-                                <Skeleton />
-                                <Skeleton />
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                                <Skeleton className="h-40" />
+                                <Skeleton className="h-40" />
+                                <Skeleton className="h-40" />
+                                <Skeleton className="h-40" />
                             </div>
                             :
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

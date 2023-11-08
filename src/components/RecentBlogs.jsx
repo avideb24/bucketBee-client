@@ -89,10 +89,13 @@ const RecentBlogs = () => {
             <div>
                 {
                     loading ?
-                        <div className="grid grid-cols-3 gap-9">
-                            <Skeleton />
-                            <Skeleton />
-                            <Skeleton />
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-9 mx-4">
+                            <Skeleton className="h-52" />
+                            <Skeleton className="h-52" />
+                            <Skeleton className="h-52" />
+                            <Skeleton className="h-52" />
+                            <Skeleton className="h-52" />
+                            <Skeleton className="h-52" />
                         </div>
                         :
 

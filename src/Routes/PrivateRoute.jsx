@@ -2,6 +2,8 @@ import { useContext } from "react";
 import PropTypes from 'prop-types';
 import { AuthContext } from "../Provider/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const PrivateRoute = ({children}) => {
 
@@ -10,7 +12,7 @@ const PrivateRoute = ({children}) => {
     const {user, loading} = useContext(AuthContext);
 
     if(loading){
-        return <span className="loading loading-ring loading-lg"></span>;
+        return <Skeleton count={3} className="mt-10 sm:mt-16 h-52 rounded-full"></Skeleton>;
     }
 
     if(user){

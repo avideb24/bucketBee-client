@@ -9,6 +9,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
+import favicon from '../images/favicon.png';
 
 const AllBlogs = () => {
 
@@ -86,6 +87,7 @@ const AllBlogs = () => {
         <div>
             <Helmet>
                 <title>All Blogs</title>
+                <link rel="icon" href={favicon} />
             </Helmet>
             <NavBar></NavBar>
             <div className="max-w-7xl mx-auto">

@@ -7,6 +7,8 @@ import RecentBlogs from "../components/RecentBlogs";
 import Recommended from "../components/Recommended";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
+import Tags from "../components/Tags";
+import favicon from '../images/favicon.png';
 
 const Home = () => {
 
@@ -18,6 +20,7 @@ const Home = () => {
                 user ?
                     <Helmet>
                         <title>Home</title>
+                        <link rel="icon" href={favicon} />
                     </Helmet>
                     :
                     <Helmet>
@@ -29,6 +32,7 @@ const Home = () => {
             <NavBar></NavBar>
             <Banner></Banner>
             <RecentBlogs></RecentBlogs>
+            <Tags></Tags>
             <Recommended></Recommended>
             <Newsletter></Newsletter>
             <Footer></Footer>

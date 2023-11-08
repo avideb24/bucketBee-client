@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import DataTable from "react-data-table-component";
 import PropTypes from 'prop-types';
 import { Helmet } from "react-helmet";
+import favicon from '../images/favicon.png';
 
 const ImageCell = ({ imageUrl }) => {
     return <img src={imageUrl} alt="Blog" style={{ width: '35px', height: '35px', borderRadius: '50%' }} />;
@@ -43,9 +44,12 @@ const FeaturedBlogs = () => {
         <div>
             <Helmet>
                 <title>Featured Blogs</title>
+                <link rel="icon" href={favicon} />
             </Helmet>
             <NavBar></NavBar>
-            <DataTable columns={columns} data={featuredBlogs}></DataTable>
+            <div className="max-w-7xl mx-auto mt-5 mb-12">
+                <DataTable columns={columns} data={featuredBlogs}></DataTable>
+            </div>
             <Footer></Footer>
         </div>
     );

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
+import favicon from '../images/favicon.png';
 
 const Register = () => {
 
@@ -98,6 +99,7 @@ const Register = () => {
         <div>
             <Helmet>
                 <title>Register</title>
+                <link rel="icon" href={favicon} />
             </Helmet>
             <NavBar></NavBar>
             <div className="py-10 px-5">

@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
+import logo from '../images/logo.png';
 
 const NavBar = () => {
 
@@ -103,7 +104,9 @@ const NavBar = () => {
                             </li>
                         </ul>
                     </div>
-                    <Link to='/' className="text-xl sm:text-2xl font-bold italic flex">Bucket<span className="text-yellow-500">Bee</span></Link>
+                    <Link to='/'>
+                        <img className="w-44 object-contain" src={logo} alt="" />
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

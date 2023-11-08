@@ -8,6 +8,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { PhotoProvider, PhotoView } from "react-photo-view";
+import favicon from '../images/favicon.png';
 
 const Wishlist = () => {
 
@@ -75,6 +76,7 @@ const Wishlist = () => {
         <div>
             <Helmet>
                 <title>Wishlist</title>
+                <link rel="icon" href={favicon} />
             </Helmet>
             <NavBar></NavBar>
             <div className="max-w-7xl mx-auto py-6 sm:py-16">

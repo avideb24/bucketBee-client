@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
+import favicon from '../images/favicon.png';
 
 const AddBlog = () => {
 
@@ -68,6 +69,7 @@ const AddBlog = () => {
         <div>
             <Helmet>
                 <title>Add Blog</title>
+                <link rel="icon" href={favicon} />
             </Helmet>
             <NavBar></NavBar>
             <div className="max-w-7xl mx-auto">
