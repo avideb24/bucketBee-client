@@ -19,7 +19,7 @@ const NavBar = () => {
     // console.log(loggedUser);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://bucket-bee-server.vercel.app/users')
             .then(res => res.json())
             .then(data => setLoadedUsers(data))
 
@@ -167,14 +167,6 @@ const NavBar = () => {
                         user ?
                             <div className="flex items-center gap-3">
                                 <div className="flex items-center gap-2">
-
-                                    <div>
-                                        {
-                                            loggedUser ? <p className="text-[#539aa0] text-xs sm:text-lg">{loggedUser?.userName}</p>
-                                                :
-                                                ''
-                                        }
-                                    </div>
                                     <div>
                                         {
                                             loggedUser ?

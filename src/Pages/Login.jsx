@@ -19,7 +19,7 @@ const Login = () => {
     const { signInUser, googleSignIn } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://bucket-bee-server.vercel.app/users')
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
@@ -62,7 +62,7 @@ const Login = () => {
                 if (!oldUser) {
                     const newUser = { userEmail: loggedUser.email, userName: loggedUser.displayName, userPhoto: loggedUser.photoURL };
                     console.log(newUser);
-                    fetch('http://localhost:5000/users', {
+                    fetch('https://bucket-bee-server.vercel.app/users', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

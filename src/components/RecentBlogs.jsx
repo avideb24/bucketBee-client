@@ -21,7 +21,7 @@ const RecentBlogs = () => {
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://bucket-bee-server.vercel.app/blogs')
             .then(res => res.json())
             .then(data => {
                 const sortedBlogs = data.map(blog => ({
@@ -35,7 +35,7 @@ const RecentBlogs = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
+        fetch(`https://bucket-bee-server.vercel.app/wishlist?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserWishlist(data))
     }, [user?.email])
@@ -58,7 +58,7 @@ const RecentBlogs = () => {
         }
 
         else if (!addedBlog) {
-            fetch('http://localhost:5000/wishlist', {
+            fetch('https://bucket-bee-server.vercel.app/wishlist', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -84,8 +84,7 @@ const RecentBlogs = () => {
 
     return (
         <div className="max-w-7xl mx-auto py-8 sm:pb-16">
-            <h2 className="text-2xl sm:text-3xl text-[#363636] font-bold pt-2 sm:pt-10 pb-2 mx-4">Recent Blogs</h2>
-            <div className='w-full h-1 bg-[#363636] mb-8 mx-4'></div>
+            <h2 className="text-2xl sm:text-3xl text-[#363636] font-bold pt-2 sm:pt-10 pb-2 mx-4 mb-5 border-b-4 border-b-[#363636]">Recent Blogs</h2>
             <div>
                 {
                     loading ?

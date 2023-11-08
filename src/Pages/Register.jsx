@@ -69,7 +69,7 @@ const Register = () => {
 
                 const user = { userEmail: email, userName, userPhoto };
                 // console.log(user);
-                fetch('http://localhost:5000/users', {
+                fetch('https://bucket-bee-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

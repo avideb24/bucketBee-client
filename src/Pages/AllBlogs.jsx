@@ -19,10 +19,12 @@ const AllBlogs = () => {
 
     const blogs = useLoaderData();
 
+    const [category, setCategory] = useState('All');
+
     const [filteredBlogs, setFilteredBlogs] = useState(blogs);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/wishlist?email=${user?.email}`)
+        fetch(`https://bucket-bee-server.vercel.app/wishlist?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setUserWishlist(data))
     }, [user?.email])
@@ -43,7 +45,7 @@ const AllBlogs = () => {
         }
 
         else if (!addedBlog) {
-            fetch('http://localhost:5000/wishlist', {
+            fetch('https://bucket-bee-server.vercel.app/wishlist', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -68,9 +70,16 @@ const AllBlogs = () => {
 
     const handleSelect = e => {
         const selectedCategory = (e.target.value);
+        setCategory(selectedCategory)
         // console.log(value);
-        const filtered = blogs.filter(blog => blog.category.toLowerCase() === selectedCategory.toLowerCase());
-        setFilteredBlogs(filtered);
+        if (selectedCategory === 'All') {
+            setFilteredBlogs(blogs)
+        }
+        else {
+            const filtered = blogs.filter(blog => blog.category.toLowerCase() === selectedCategory.toLowerCase());
+            setFilteredBlogs(filtered);
+        }
+
     }
 
     const handleSearch = e => {
@@ -94,6 +103,7 @@ const AllBlogs = () => {
                 <div className="mx-4 sm:mx-0 text-sm sm:text-lg">
                     <div className="pt-10 pb-10 flex justify-center gap-6">
                         <select onChange={handleSelect} className="bg-white border-2 border-[#539aa0] text-[#08133a] w-16 sm:w-32 px-2 sm:px-4 py-1 sm:py-2 rounded-md cursor-pointer">
+                            <option value="All">All</option>
                             <option value="Food">Food</option>
                             <option value="Travel">Travel</option>
                             <option value="Education">Education</option>
@@ -109,13 +119,13 @@ const AllBlogs = () => {
                     <div>
                         {
                             filteredBlogs.length === 0 ?
-                                <div className="text-2xl text-[#539aa0] font-bold text-center">
+                                <div className="text-2xl text-[#539aa0] font-bold text-center mb-8">
                                     No Blogs Added
                                 </div>
                                 :
                                 <div className="flex flex-wrap justify-center items-center gap-4 pb-5 sm:pb-16 mx-4">
                                     {
-                                        filteredBlogs.map(blog =>
+                                        filteredBlogs?.map(blog =>
                                             <div key={blog._id} className="w-96 p-5 rounded-md hover:scale-105 duration-200 border-2 border-[#539aa0] text-[#539aa0]">
                                                 <PhotoProvider>
                                                     <PhotoView src={blog.photo}>
@@ -127,7 +137,14 @@ const AllBlogs = () => {
                                                         <p className="text-xs sm:text-sm">{blog.category}</p>
                                                         <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
                                                     </div>
-                                                    <h2 className="text-xl sm:text-2xl text-black italic font-extrabold">{blog.title}</h2>
+                                                    <div className="h-16">
+                                                        {
+                                                            blog.title.length < 45 ?
+                                                                <h2 className="text-xl sm:text-2xl text-black italic font-extrabold">{blog.title}</h2>
+                                                                :
+                                                                <h2 className="text-xl sm:text-2xl text-black italic font-extrabold">{blog.title.slice(0, 45)}...</h2>
+                                                        }
+                                                    </div>
                                                     <div>
                                                         {
                                                             blog.shortDescription.length < 40 ?

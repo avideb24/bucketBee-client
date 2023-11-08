@@ -12,7 +12,7 @@ const Recommended = () => {
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/blogs')
+        fetch('https://bucket-bee-server.vercel.app/blogs')
             .then(res => res.json())
             .then(data => {
                 setBlogs(data);
@@ -23,6 +23,7 @@ const Recommended = () => {
 
     return (
         <div className="max-w-7xl mx-auto pb-10">
+            <h2 className="text-2xl sm:text-3xl text-[#363636] font-bold pt-2 sm:pt-10 pb-2 mx-4 mb-5 border-b-4 border-b-[#363636]">Recommended</h2>
             <div className="mx-4 bg-slate-100 p-4 rounded-md ">
                 <h2 className="text-sm font-normal mb-3 text-[#363636]">You might also like...</h2>
                 <div>

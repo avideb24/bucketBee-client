@@ -18,7 +18,7 @@ const Wishlist = () => {
 
     const [wishlist, setWishlist] = useState([]);
 
-    const url = `http://localhost:5000/wishlist?email=${user?.email}`;
+    const url = `https://bucket-bee-server.vercel.app/wishlist?email=${user?.email}`;
 
     useEffect(() => {
         fetch(url)
@@ -44,7 +44,7 @@ const Wishlist = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/wishlist/${id}`, {
+                fetch(`https://bucket-bee-server.vercel.app/wishlist/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => {

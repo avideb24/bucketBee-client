@@ -30,12 +30,12 @@ const Routes = createBrowserRouter([
             {
                 path: '/allBlogs',
                 element: <AllBlogs></AllBlogs>,
-                loader: () => fetch('http://localhost:5000/blogs')
+                loader: () => fetch('https://bucket-bee-server.vercel.app/blogs')
             },
             {
                 path: '/featuredBlogs',
                 element: <FeaturedBlogs></FeaturedBlogs>,
-                loader: () => fetch('http://localhost:5000/blogs')
+                loader: () => fetch('https://bucket-bee-server.vercel.app/blogs')
             },
             {
                 path: '/wishlist',
@@ -52,12 +52,12 @@ const Routes = createBrowserRouter([
             {
                 path: '/blogs/:id',
                 element: <BlogDetails></BlogDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
+                loader: ({params}) => fetch(`https://bucket-bee-server.vercel.app/blogs/${params.id}`)
             },
             {
                 path: '/updateBlog/:id',
                 element: <PrivateRoute><UpdatePage></UpdatePage></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
+                loader: ({params}) => fetch(`https://bucket-bee-server.vercel.app/blogs/${params.id}`)
             }
         ]
     }

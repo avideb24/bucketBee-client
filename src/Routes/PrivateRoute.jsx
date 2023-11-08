@@ -12,7 +12,7 @@ const PrivateRoute = ({children}) => {
     const {user, loading} = useContext(AuthContext);
 
     if(loading){
-        return <Skeleton count={3} className="mt-10 sm:mt-16 h-52 rounded-full"></Skeleton>;
+        return <Skeleton count={3} className="mt-10 sm:mt-16 h-52"></Skeleton>;
     }
 
     if(user){

@@ -22,13 +22,13 @@ const UpdatePage = () => {
     // console.log(loggedUser);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://bucket-bee-server.vercel.app/users')
             .then(res => res.json())
             .then(data => setLoadedUsers(data))
     }, [])
 
 
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('Food');
 
     const handleCategory = e => {
         const selectedValue = e.target.value;
@@ -50,7 +50,7 @@ const UpdatePage = () => {
         const updatedBlog = { title, photo, shortDescription, longDescription, category, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto, userEmail: user.email };
         // console.log(updatedBlog);
 
-        fetch(`http://localhost:5000/blogs/${_id}`, {
+        fetch(`https://bucket-bee-server.vercel.app/blogs/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

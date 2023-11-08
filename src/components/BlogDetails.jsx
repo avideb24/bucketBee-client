@@ -27,13 +27,13 @@ const BlogDetails = () => {
     // console.log(userEmail);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://bucket-bee-server.vercel.app/users')
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
 
     useEffect(() => {
-        fetch('http://localhost:5000/comments')
+        fetch('https://bucket-bee-server.vercel.app/comments')
             .then(res => res.json())
             .then(data => {
                 setComments(data);
@@ -50,7 +50,7 @@ const BlogDetails = () => {
 
         const comment = { commentText, blog_id: _id, userEmail: user.email, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto };
         // console.log(comment);
-        fetch('http://localhost:5000/comments', {
+        fetch('https://bucket-bee-server.vercel.app/comments', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -92,7 +92,7 @@ const BlogDetails = () => {
                         </PhotoProvider>
                         <p className="text-sm text-[#539aa0]">{category}</p>
                     </div>
-                    <div className="mt-3"><span className="text-xl">Description:</span> {longDescription}</div>
+                    <div className="mt-3 text-justify"><span className="text-xl text-[#2c2b2b]">Description:</span> {longDescription}</div>
 
                     <div>
                         {
@@ -115,7 +115,7 @@ const BlogDetails = () => {
                                         </PhotoView>
                                     </PhotoProvider>
                                     <div>
-                                        <h2 className="text-[#539aa0]">{comment.userName}</h2>
+                                        <h2 className="text-[#2c2b2b]">{comment.userName}</h2>
                                         <p className="text-sm">{comment.commentText}</p>
                                     </div>
                                 </div>

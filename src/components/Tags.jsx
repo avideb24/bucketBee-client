@@ -5,7 +5,7 @@ const Tags = () => {
     const [uniqueCategories, setUniqueCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/blogs")
+    fetch("https://bucket-bee-server.vercel.app/blogs")
       .then((res) => res.json())
       .then((data) => {
         // Extract unique categories from the fetched blog data
