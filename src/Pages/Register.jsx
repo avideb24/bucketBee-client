@@ -109,7 +109,7 @@ const Register = () => {
                         <input onChange={handleUserName} className="w-full border-2 outline-none bg-white border-[#539aa0] p-2 rounded-md" type="text" name="name" required placeholder="Enter your name" />
                         <input onChange={handleUserPhoto} className="w-full border-2 outline-none bg-white border-[#539aa0] p-2 rounded-md my-4" type="text" name="photo" required placeholder="Enter your photo URL" />
                         <input className="w-full border-2 outline-none bg-white border-[#539aa0] p-2 rounded-md" type="email" name="email" required placeholder="Enter your email address" />
-                        <input className="w-fullborder-2 outline-none bg-white border-[#539aa0] p-2 my-4 rounded-md" type="password" name="password" required placeholder="Enter your password" />
+                        <input className="w-full border-2 outline-none bg-white border-[#539aa0] p-2 my-4 rounded-md" type="password" name="password" required placeholder="Enter your password" />
                         <input type="submit" className="w-full bg-[#539aa0] text-[#363636] font-bold py-2 rounded-md cursor-pointer" value="Register" />
                     </form>
                     <p className="text-center mt-6 sm:text-md text-sm">Already Have An Account ? <Link className="font-bold text-blue-500" to='/login'>Login</Link></p>

@@ -19,8 +19,6 @@ const AllBlogs = () => {
 
     const blogs = useLoaderData();
 
-    const [category, setCategory] = useState('All');
-
     const [filteredBlogs, setFilteredBlogs] = useState(blogs);
 
     useEffect(() => {
@@ -70,7 +68,6 @@ const AllBlogs = () => {
 
     const handleSelect = e => {
         const selectedCategory = (e.target.value);
-        setCategory(selectedCategory)
         // console.log(value);
         if (selectedCategory === 'All') {
             setFilteredBlogs(blogs)

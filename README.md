@@ -1,8 +1,18 @@
-# React + Vite
+<h1>BucketBee</h1>
+<p>It's a blog website.</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p>Features:</p>
+<ul>
+    <li>Once you sign in, you can add your own blogs.</li>
+    <li>You can see the recent blogs in the recent section in homepage.</li>
+    <li>You can also see all the blogs added by the users at All Blogs page.</li>
+    <li>By clicking the Read More button will take you the blog detail page where you can see the full blog detail. You can comment also.</li>
+    <li>You can add blogs in your wishlist and find them in Wishlist page.</li>
+    <li>In featured blogs page, you can see the table of longest description of the blogs maintained in a serial.</li>
+</ul>
 
-Currently, two official plugins are available:
+<p>Live Website Link:</p> # https://bucketbee-13436.web.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<br>
+
+<p>Thank You</p>
