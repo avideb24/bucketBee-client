@@ -98,18 +98,18 @@ const AllBlogs = () => {
             <NavBar></NavBar>
             <div className="max-w-7xl mx-auto">
                 <div className="mx-4 sm:mx-0 text-sm sm:text-lg">
-                    <div className="pt-10 pb-10 flex justify-center gap-6">
-                        <select onChange={handleSelect} className="bg-white border-2 border-[#539aa0] text-[#08133a] w-16 sm:w-32 px-2 sm:px-4 py-1 sm:py-2 rounded-md cursor-pointer">
+                    <div className="pt-10 pb-10 flex justify-center gap-2 sm:gap-6">
+                        <select onChange={handleSelect} className="bg-white border-2 border-[#539aa0] text-[#08133a] w-20 sm:w-32 px-2 sm:px-4 py-1 sm:py-2 rounded-md cursor-pointer">
                             <option value="All">All</option>
                             <option value="Food">Food</option>
                             <option value="Travel">Travel</option>
                             <option value="Education">Education</option>
                             <option value="Lifestyle">Lifestyle</option>
                         </select>
-                        <div className="max-w-xs">
+                        <div className="sm:max-w-xs">
                             <form className="flex items-center" onSubmit={handleSearch}>
-                                <input className="bg-white border-2 border-[#539aa0] text-black w-[70%] h-10 px-4 rounded-tl-md rounded-bl-md outline-none" type="text" name="search" placeholder="Search By Title" required />
-                                <input className="bg-[#539aa0] text-black w-[30%] h-10 px-2 rounded-tr-md rounded-br-md cursor-pointer" type="submit" value="Search" />
+                                <input className="bg-white border-2 border-[#539aa0] text-black w-[70%] h-12 px-4 rounded-tl-md rounded-bl-md outline-none" type="text" name="search" placeholder="Search By Title" required />
+                                <input className="bg-[#539aa0] text-black w-[30%] h-12 px-2 rounded-tr-md rounded-br-md cursor-pointer" type="submit" value="Search" />
                             </form>
                         </div>
                     </div>
