@@ -81,7 +81,7 @@ const UpdatePage = () => {
             <NavBar></NavBar>
             <div className="max-w-7xl mx-auto pb-6">
                 <div className="my-1 sm:my-5 mx-4">
-                    <h2 className="text-center text-2xl sm:text-3xl text-[#363636] font-bold pt-10 pb-2">Add Your Blog</h2>
+                    <h2 className="text-center text-2xl sm:text-3xl text-[#363636] font-bold pt-10 pb-2">Update Your Blog</h2>
                     <div className='w-32 h-1 mx-auto bg-[#363636] mb-8'></div>
                     <form className="max-w-5xl mx-auto space-y-3 text-[#363636]" onSubmit={handleUpdateBlog}>
                         <input type="text" className="w-full h-10 px-4 border-2 outline-none bg-white border-[#539aa0] font-normal rounded-md" name="title" placeholder="Blog Title" defaultValue={title} /> <br />
