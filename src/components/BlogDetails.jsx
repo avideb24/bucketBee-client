@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
 import { useContext, useEffect, useState } from "react";
@@ -10,6 +10,8 @@ import 'react-photo-view/dist/react-photo-view.css';
 import favicon from '../images/favicon.png';
 
 const BlogDetails = () => {
+
+    const navigate = useNavigate();
 
     const { _id, title, photo, shortDescription, longDescription, category, userEmail } = useLoaderData();
 
@@ -46,28 +48,39 @@ const BlogDetails = () => {
     const handleComment = e => {
         e.preventDefault();
 
-        const commentText = e.target.commentBox.value;
+        if (user) {
+            const commentText = e.target.commentBox.value;
 
-        const comment = { commentText, blog_id: _id, userEmail: user.email, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto };
-        // console.log(comment);
-        fetch('https://bucket-bee-server.vercel.app/comments', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(comment)
-        })
-            .then(res => {
-                console.log(res);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Comment Added Successfully!',
-                })
-                e.target.reset();
-                setBlogComments([...blogComments, comment])
-
+            const comment = { commentText, blog_id: _id, userEmail: user.email, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto };
+            // console.log(comment);
+            fetch('https://bucket-bee-server.vercel.app/comments', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(comment)
             })
-            .then(err => console.error(err))
+                .then(res => {
+                    console.log(res);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Comment Added Successfully!',
+                    })
+                    e.target.reset();
+                    setBlogComments([...blogComments, comment])
+
+                })
+                .then(err => console.error(err))
+        }
+        
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Please Log In First!',
+            })
+            navigate('/login')
+        }
+
     }
 
 

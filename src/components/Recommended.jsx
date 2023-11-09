@@ -4,6 +4,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import Skeleton from "react-loading-skeleton";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
+// import { useQuery } from "@tanstack/react-query";
 
 const Recommended = () => {
 
@@ -19,6 +20,20 @@ const Recommended = () => {
                 setLoading(false);
             })
     }, [])
+
+
+    // const { data: blogs, isLoading, isError, error } = useQuery({
+    //     queryKey: ['blogs'],
+    //     queryFn: async () => {
+    //         const res = await fetch('https://bucket-bee-server.vercel.app/blogs');
+    //         return res.json();
+    //     }
+    // })
+
+
+    // if (isError) {
+    //     return <span>Error: {error.message}</span>
+    // }
 
 
     return (

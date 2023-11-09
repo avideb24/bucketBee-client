@@ -6,6 +6,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
 import logo from '../images/logo.png';
 
+
 const NavBar = () => {
 
     const { user, signOutUser } = useContext(AuthContext);
@@ -166,20 +167,17 @@ const NavBar = () => {
                     {
                         user ?
                             <div className="flex items-center gap-3">
-                                <div className="flex items-center gap-2">
-                                    <div>
-                                        {
-                                            loggedUser ?
-                                                <PhotoProvider>
-                                                    <PhotoView src={loggedUser?.userPhoto}>
-                                                        <img className="w-8 h-8 object-cover rounded-full cursor-pointer" src={loggedUser?.userPhoto} alt="" />
-                                                    </PhotoView>
-                                                </PhotoProvider>
-                                                :
-                                                ''
-                                        }
-                                    </div>
-
+                                <div>
+                                    {
+                                        loggedUser ?                                       
+                                        <PhotoProvider>
+                                            <PhotoView src={loggedUser?.userPhoto}>
+                                                <img className="w-8 h-8 object-cover rounded-full cursor-pointer" src={loggedUser?.userPhoto} alt="" />
+                                            </PhotoView>
+                                        </PhotoProvider>
+                                        :
+                                        ''
+                                    }
                                 </div>
                                 <Link onClick={handleLogOut} className="bg-[#539aa0] text-black  px-2 sm:px-4 py-1 text-xs sm:text-lg rounded-md" to='/'>Log Out</Link>
                             </div>

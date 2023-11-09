@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsFillClipboardHeartFill } from "react-icons/bs";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import Footer from "../components/Footer";
@@ -10,14 +10,32 @@ import { Helmet } from "react-helmet";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
 import favicon from '../images/favicon.png';
+import { useQuery } from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
 
 const AllBlogs = () => {
+
+    const { isPending, data: blogs, isError, error } = useQuery({
+        queryKey: ['blogs'],
+        queryFn: async () => {
+            const res = await fetch('https://bucket-bee-server.vercel.app/blogs');
+            return res.json();
+        }
+    });
+
+    useEffect(() => {
+        if (blogs) {
+            setFilteredBlogs(blogs);
+        }
+    }, [blogs]);
+
+    console.log(blogs);
+
+    const navigate = useNavigate();
 
     const { user } = useContext(AuthContext);
 
     const [userWishlist, setUserWishlist] = useState([]);
-
-    const blogs = useLoaderData();
 
     const [filteredBlogs, setFilteredBlogs] = useState(blogs);
 
@@ -28,41 +46,51 @@ const AllBlogs = () => {
     }, [user?.email])
 
     const handleWishlist = id => {
-        const { _id, title, photo, category, shortDescription } = blogs.find(blog => blog._id === id);
-        const wishlistedBlog = { blog_id: _id, title, photo, category, shortDescription, email: user.email };
+        if (user) {
+            const { _id, title, photo, category, shortDescription } = blogs.find(blog => blog._id === id);
+            const wishlistedBlog = { blog_id: _id, title, photo, category, shortDescription, email: user.email };
 
-        const addedBlog = userWishlist.find(blog => blog.blog_id === id);
+            const addedBlog = userWishlist.find(blog => blog.blog_id === id);
 
-        // console.log(addedBlog);
+            // console.log(addedBlog);
 
-        if (addedBlog) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Already Added!',
-            })
+            if (addedBlog) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Already Added!',
+                })
+            }
+
+            else if (!addedBlog) {
+                fetch('https://bucket-bee-server.vercel.app/wishlist', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(wishlistedBlog)
+                })
+                    .then(res => {
+                        console.log(res);
+                        if (res.ok) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Wishlisted Successfully!',
+                            })
+                        }
+                        setUserWishlist([...userWishlist, wishlistedBlog]);
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    })
+            }
         }
 
-        else if (!addedBlog) {
-            fetch('https://bucket-bee-server.vercel.app/wishlist', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(wishlistedBlog)
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Please Log In First!',
             })
-                .then(res => {
-                    console.log(res);
-                    if (res.ok) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Wishlisted Successfully!',
-                        })
-                    }
-                    setUserWishlist([...userWishlist, wishlistedBlog]);
-                })
-                .catch(err => {
-                    console.error(err);
-                })
+            navigate('/login')
         }
     }
 
@@ -88,6 +116,10 @@ const AllBlogs = () => {
     }
 
     // console.log(filteredBlogs);
+
+    if (isError) {
+        return <span>Error: {error.message}</span>
+    }
 
     return (
         <div>
@@ -115,47 +147,61 @@ const AllBlogs = () => {
                     </div>
                     <div>
                         {
-                            filteredBlogs.length === 0 ?
-                                <div className="text-2xl text-[#539aa0] font-bold text-center mb-8">
-                                    No Blogs Added
+                            isPending === true ?
+                                <div className="grid grid-cols-1 sm:grid-cols-3 mb-5 gap-9 mx-4">
+                                    <Skeleton className="h-52" />
+                                    <Skeleton className="h-52" />
+                                    <Skeleton className="h-52" />
+                                    <Skeleton className="h-52" />
+                                    <Skeleton className="h-52" />
+                                    <Skeleton className="h-52" />
                                 </div>
                                 :
-                                <div className="flex flex-wrap justify-center items-center gap-4 pb-5 sm:pb-16 mx-4">
+                                <div>
                                     {
-                                        filteredBlogs?.map(blog =>
-                                            <div key={blog._id} className="w-96 p-5 rounded-md hover:scale-105 duration-200 border-2 border-[#539aa0] text-[#539aa0]">
-                                                <PhotoProvider>
-                                                    <PhotoView src={blog.photo}>
-                                                        <img className="w-full h-52 object-cover cursor-pointer rounded-md" src={blog.photo} alt="" />
-                                                    </PhotoView>
-                                                </PhotoProvider>
-                                                <div className="p-3 pb-0 space-y-1">
-                                                    <div className="flex justify-between items-center">
-                                                        <p className="text-xs sm:text-sm">{blog.category}</p>
-                                                        <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
-                                                    </div>
-                                                    <div className="h-16">
-                                                        {
-                                                            blog.title.length < 45 ?
-                                                                <h2 className="text-xl sm:text-2xl text-black italic font-extrabold">{blog.title}</h2>
-                                                                :
-                                                                <h2 className="text-xl sm:text-2xl text-black italic font-extrabold">{blog.title.slice(0, 45)}...</h2>
-                                                        }
-                                                    </div>
-                                                    <div>
-                                                        {
-                                                            blog.shortDescription.length < 40 ?
-                                                                <p className="text-sm">{blog.shortDescription}</p>
-                                                                :
-                                                                <p className="text-sm">{blog.shortDescription.slice(0, 40)}...</p>
-                                                        }
-                                                    </div>
-                                                    <Link to={`/blogs/${blog._id}`}>
-                                                        <button className="flex items-center gap-2 text-black mt-4">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
-                                                    </Link>
-                                                </div>
+                                        filteredBlogs?.length === 0 ?
+                                            <div className="text-2xl text-[#539aa0] font-bold text-center mb-8">
+                                                No Blogs Added
                                             </div>
-                                        )
+                                            :
+                                            <div className="flex flex-wrap justify-center items-center gap-4 pb-5 sm:pb-16 mx-4">
+                                                {
+                                                    filteredBlogs?.map(blog =>
+                                                        <div key={blog._id} className="w-96 p-5 rounded-md hover:scale-105 duration-200 border-2 border-[#539aa0] text-[#539aa0]">
+                                                            <PhotoProvider>
+                                                                <PhotoView src={blog.photo}>
+                                                                    <img className="w-full h-52 object-cover cursor-pointer rounded-md" src={blog.photo} alt="" />
+                                                                </PhotoView>
+                                                            </PhotoProvider>
+                                                            <div className="p-3 pb-0 space-y-1">
+                                                                <div className="flex justify-between items-center">
+                                                                    <p className="text-xs sm:text-sm">{blog.category}</p>
+                                                                    <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
+                                                                </div>
+                                                                <div className="h-16">
+                                                                    {
+                                                                        blog.title.length < 45 ?
+                                                                            <h2 className="text-xl sm:text-2xl text-black italic font-extrabold">{blog.title}</h2>
+                                                                            :
+                                                                            <h2 className="text-xl sm:text-2xl text-black italic font-extrabold">{blog.title.slice(0, 45)}...</h2>
+                                                                    }
+                                                                </div>
+                                                                <div>
+                                                                    {
+                                                                        blog.shortDescription.length < 40 ?
+                                                                            <p className="text-sm">{blog.shortDescription}</p>
+                                                                            :
+                                                                            <p className="text-sm">{blog.shortDescription.slice(0, 40)}...</p>
+                                                                    }
+                                                                </div>
+                                                                <Link to={`/blogs/${blog._id}`}>
+                                                                    <button className="flex items-center gap-2 text-black mt-4">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
+                                                                </Link>
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
                                     }
                                 </div>
                         }

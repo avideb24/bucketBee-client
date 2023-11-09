@@ -89,7 +89,7 @@ const Wishlist = () => {
                             :
                             <div className="text-xs sm:text-sm md:text-md">
                                 {
-                                    wishlist.map(blog =>
+                                    wishlist?.map(blog =>
                                         <div key={blog._id} className="flex flex-col md:flex-row gap-6 justify-between items-center  mx-auto p-4 bg-white border-2 border-[#539aa0] text-[#539aa0] rounded-md mb-5">
                                             <div className="md:w-2/4 flex items-center gap-8">
                                                 <div className="w-1/2">

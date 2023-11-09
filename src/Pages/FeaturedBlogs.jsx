@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import DataTable from "react-data-table-component";
 import PropTypes from 'prop-types';
 import { Helmet } from "react-helmet";
 import favicon from '../images/favicon.png';
+import { useQuery } from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
 
 const ImageCell = ({ imageUrl }) => {
     return <img src={imageUrl} alt="Blog" style={{ width: '35px', height: '35px', borderRadius: '50%' }} />;
@@ -13,11 +14,16 @@ const ImageCell = ({ imageUrl }) => {
 
 const FeaturedBlogs = () => {
 
+    const { isPending, data: blogs } = useQuery({
+        queryKey: ['blogs'],
+        queryFn: async () => {
+            const res = await fetch('https://bucket-bee-server.vercel.app/blogs');
+            return res.json();
+        }
+    });
 
-    const blogs = useLoaderData()
 
-    const sortedBlogs = blogs.sort((a, b) => b.longDescription.length - a.longDescription.length);
-
+    const sortedBlogs = blogs ? [...blogs].sort((a, b) => b.longDescription.length - a.longDescription.length) : [];
     const featuredBlogs = sortedBlogs.slice(0, 10);
     // console.log(featuredBlogs);
 
@@ -47,8 +53,56 @@ const FeaturedBlogs = () => {
                 <link rel="icon" href={favicon} />
             </Helmet>
             <NavBar></NavBar>
-            <div className="max-w-7xl mx-auto mt-5 mb-12">
-                <DataTable columns={columns} data={featuredBlogs}></DataTable>
+            <div>
+                {
+                    isPending === true ?
+                        <div className="grid grid-cols-4 mb-6 gap-6">
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                            <Skeleton className="h-6" />
+                        </div>
+                        :
+                        <div className="max-w-7xl mx-auto mt-5 mb-12">
+                            <DataTable columns={columns} data={featuredBlogs}></DataTable>
+                        </div>
+                }
             </div>
             <Footer></Footer>
         </div>

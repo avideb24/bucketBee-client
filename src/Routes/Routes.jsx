@@ -29,13 +29,11 @@ const Routes = createBrowserRouter([
             },
             {
                 path: '/allBlogs',
-                element: <AllBlogs></AllBlogs>,
-                loader: () => fetch('https://bucket-bee-server.vercel.app/blogs')
+                element: <AllBlogs></AllBlogs>           
             },
             {
                 path: '/featuredBlogs',
-                element: <FeaturedBlogs></FeaturedBlogs>,
-                loader: () => fetch('https://bucket-bee-server.vercel.app/blogs')
+                element: <FeaturedBlogs></FeaturedBlogs>
             },
             {
                 path: '/wishlist',
