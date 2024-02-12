@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import './FeaturedCss.css'
+import { AiOutlineArrowRight } from "react-icons/ai";
+// import './FeaturedCss.css'
 
 
 const FeaturedHome = () => {
@@ -34,9 +35,7 @@ const FeaturedHome = () => {
                                 <div className="mb-5 xl:mb-0 xl:col-span-3 border-2 rounded-md p-4">
                                     <img className="w-full h-80 object-cover rounded-md" src={firstBlog.photo} alt="" />
                                     <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 my-4 rounded-md inline-block text-white">{firstBlog.category}</span><br />
-                                    <Link to={`/blogs/${firstBlog._id}`}>
-                                        <h3 className="blog-title text-2xl sm:text-4xl font-bold mb-3 inline-block relative">{firstBlog.title} </h3>
-                                    </Link>
+                                    <h3 className="blog-title text-2xl sm:text-4xl font-bold mb-3 inline-block relative">{firstBlog.title} </h3>
                                     <div>
                                         {
                                             firstBlog.shortDescription.length < 350 ?
@@ -45,6 +44,9 @@ const FeaturedHome = () => {
                                                 <p className="">{firstBlog.shortDescription.slice(0, 350)}...</p>
                                         }
                                     </div>
+                                    <Link to={`/blogs/${firstBlog._id}`}>
+                                    <button className="flex items-center gap-2 text-[#539aa0] mt-4">Read More <span className="mt-1 font-extrabold text-md text-[#539aa0] "><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
+                                    </Link>
                                 </div>
                                 <div className="xl:col-span-2 flex flex-col gap-5">
                                     {
@@ -52,9 +54,10 @@ const FeaturedHome = () => {
                                             <div key={blog._id} className="flex gap-4 border-2 p-3 rounded-md">
                                                 <img className="w-52 rounded-md h-36 object-cover" src={blog.photo} alt="" />
                                                 <div className="">
-                                                    <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mb-4 rounded-md inline-block text-white">{blog.category}</span> <br />
+                                                    <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mb-4 rounded-md inline-block text-sm text-white">{blog.category}</span> <br />
+                                                    <h3 className="blog-title text-sm sm:text-xl font-bold mb-3 inline-block relative">{blog.title}</h3>
                                                     <Link to={`/blogs/${blog._id}`}>
-                                                        <h3 className="blog-title text-sm sm:text-xl font-bold mb-3 inline-block relative">{blog.title}</h3>
+                                                    <button className="flex items-center gap-2 text-sm text-[#539aa0] mt-2">Read More <span className="mt-1 font-extrabold text-md text-[#539aa0] "><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
                                                     </Link>
                                                 </div>
                                             </div>

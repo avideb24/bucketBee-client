@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
-import favicon from '../images/favicon.png';
+import favicon from '../images/fav.png';
 
 const BlogDetails = () => {
 
@@ -103,7 +103,7 @@ const BlogDetails = () => {
                                 <img className="w-full sm:h-72 md:h-80 lg:h-96 cursor-pointer object-cover rounded-md mb-2" src={photo} alt="" />
                             </PhotoView>
                         </PhotoProvider>
-                        <p className="text-sm text-[#539aa0]">{category}</p>
+                        <p className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mb-4 rounded-md inline-block text-white">{category}</p>
                     </div>
                     <div className="mt-3 text-justify"><span className="text-xl text-[#2c2b2b]">Description:</span> {longDescription}</div>
 

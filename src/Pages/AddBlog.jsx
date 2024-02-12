@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
-import favicon from '../images/favicon.png';
+import favicon from '../images/fav.png';
 import { useNavigate } from "react-router-dom";
 
 const AddBlog = () => {

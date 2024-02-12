@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import DataTable from "react-data-table-component";
 import PropTypes from 'prop-types';
 import { Helmet } from "react-helmet";
-import favicon from '../images/favicon.png';
+import favicon from '../images/fav.png';
 import { useQuery } from "@tanstack/react-query";
 import Skeleton from "react-loading-skeleton";
 

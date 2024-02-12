@@ -8,7 +8,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import favicon from '../images/favicon.png';
+import favicon from '../images/fav.png';
 
 const Wishlist = () => {
 

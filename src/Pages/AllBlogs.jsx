@@ -9,7 +9,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
-import favicon from '../images/favicon.png';
+import favicon from '../images/fav.png';
 import { useQuery } from "@tanstack/react-query";
 import Skeleton from "react-loading-skeleton";
 
@@ -167,7 +167,7 @@ const AllBlogs = () => {
                                             <div className="flex flex-wrap justify-center items-center gap-4 pb-5 sm:pb-16 mx-4">
                                                 {
                                                     filteredBlogs?.map(blog =>
-                                                        <div key={blog._id} className="w-96 p-5 rounded-md hover:scale-105 duration-200 border-2 border-[#539aa0] text-[#539aa0]">
+                                                        <div key={blog._id} className="w-96 p-5 rounded-md border-2 border-[#539aa0] text-[#539aa0]">
                                                             <PhotoProvider>
                                                                 <PhotoView src={blog.photo}>
                                                                     <img className="w-full h-52 object-cover cursor-pointer rounded-md" src={blog.photo} alt="" />
@@ -186,7 +186,7 @@ const AllBlogs = () => {
                                                                             <h2 className="text-xl sm:text-2xl text-black italic font-extrabold">{blog.title.slice(0, 45)}...</h2>
                                                                     }
                                                                 </div>
-                                                                <div>
+                                                                <div className="text-black">
                                                                     {
                                                                         blog.shortDescription.length < 40 ?
                                                                             <p className="text-sm">{blog.shortDescription}</p>
@@ -195,7 +195,7 @@ const AllBlogs = () => {
                                                                     }
                                                                 </div>
                                                                 <Link to={`/blogs/${blog._id}`}>
-                                                                    <button className="flex items-center gap-2 text-black mt-4">Read More <span className="mt-1 font-extrabold text-xl"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
+                                                                    <button className="flex items-center gap-2 text-[#539aa0] mt-4">Read More <span className="mt-1 font-extrabold text-xl text-[#539aa0]"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
                                                                 </Link>
                                                             </div>
                                                         </div>

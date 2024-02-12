@@ -5,7 +5,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import favicon from '../images/favicon.png';
+import favicon from '../images/fav.png';
 
 const UpdatePage = () => {
 

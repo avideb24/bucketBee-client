@@ -32,7 +32,7 @@ const RecentBlogs = () => {
                 ...blog,
                 numericDate: new Date(blog.date).getTime() / 1000
             })).sort((a, b) => b.numericDate - a.numericDate);
-    
+
             return sortedBlogs;
         },
     });
@@ -50,7 +50,7 @@ const RecentBlogs = () => {
     //             setLoading(false);
     //         })
     // }, [])
-   
+
 
     useEffect(() => {
         fetch(`https://bucket-bee-server.vercel.app/wishlist?email=${user?.email}`)
@@ -114,7 +114,7 @@ const RecentBlogs = () => {
     }
 
 
-    
+
 
     return (
         <div className="max-w-7xl mx-auto py-8 sm:pb-16">
@@ -163,7 +163,7 @@ const RecentBlogs = () => {
                                                     </div>
                                                     <div className="grow">
                                                         <Link to={`/blogs/${blog._id}`}>
-                                                            <button className="flex items-center gap-2 text-[#363636] mt-4">Read More <span className="mt-1 font-extrabold text-xl text-[#363636] "><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
+                                                            <button className="flex items-center gap-2 text-[#539aa0] mt-4 ml-3">Read More <span className="mt-1 font-extrabold text-xl text-[#539aa0] "><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
                                                         </Link>
                                                     </div>
                                                 </div>

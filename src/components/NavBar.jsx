@@ -54,9 +54,9 @@ const NavBar = () => {
                     <a className="text-xl" href="#"><AiFillInstagram ></AiFillInstagram ></a>
                     <a className="text-xl" href="#"><FaPinterest  ></FaPinterest  ></a>
                 </div>
-                <div>
+                <div className="pt-6 sm:pt-6 sm:pb-2">
                     <Link to='/'>
-                        <img className="w-44 object-contain" src={logo} alt="" />
+                        <img className="w-28 sm:w-44 object-contain" src={logo} alt="" />
                     </Link>
                 </div>
                 <div>
