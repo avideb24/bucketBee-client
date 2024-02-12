@@ -175,7 +175,7 @@ const AllBlogs = () => {
                                                             </PhotoProvider>
                                                             <div className="p-3 pb-0 space-y-1">
                                                                 <div className="flex justify-between items-center">
-                                                                    <p className="text-xs sm:text-sm">{blog.category}</p>
+                                                                    <p className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mb-4 rounded-md inline-block text-white">{blog.category}</p>
                                                                     <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
                                                                 </div>
                                                                 <div className="h-16">

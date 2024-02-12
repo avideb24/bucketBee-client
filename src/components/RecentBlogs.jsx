@@ -4,7 +4,6 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion"
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { PhotoProvider, PhotoView } from "react-photo-view";
@@ -33,6 +32,7 @@ const RecentBlogs = () => {
                 ...blog,
                 numericDate: new Date(blog.date).getTime() / 1000
             })).sort((a, b) => b.numericDate - a.numericDate);
+    
             return sortedBlogs;
         },
     });
@@ -114,6 +114,8 @@ const RecentBlogs = () => {
     }
 
 
+    
+
     return (
         <div className="max-w-7xl mx-auto py-8 sm:pb-16">
             <h2 className="text-2xl sm:text-3xl text-[#363636] font-bold pt-2 sm:pt-10 pb-2 mx-4 mb-5 border-b-4 border-b-[#363636]">Recent Blogs</h2>
@@ -135,14 +137,10 @@ const RecentBlogs = () => {
                                 blogs.length === 0 ?
                                     <p className="text-2xl text-[#363636] font-normal text-center my-10">No Blogs Added!</p>
                                     :
-                                    <motion.div className="flex flex-wrap justify-center items-start gap-4"
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 0.9 }}
-                                    >
+                                    <div className="flex flex-wrap justify-center items-start gap-4 bg-white p-4 rounded-md">
                                         {
                                             blogs.slice(0, 6).map(blog =>
-                                                <div key={blog._id} className="w-96 p-5 mx-4 sm:mx-0 rounded-md hover:scale-105 duration-200 border-2 border-[#539aa0] flex flex-col">
+                                                <div key={blog._id} className="w-96 bg-white p-5 mx-4 sm:mx-0 rounded-md border-2 border-[#539aa0] flex flex-col">
                                                     <PhotoProvider>
                                                         <PhotoView src={blog.photo}>
                                                             <img className="w-full h-52 object-cover cursor-pointer rounded-md" src={blog.photo} alt="" />
@@ -150,7 +148,7 @@ const RecentBlogs = () => {
                                                     </PhotoProvider>
                                                     <div className="p-3 pb-0 space-y-1">
                                                         <div className="flex justify-between items-center">
-                                                            <p className="text-xs sm:text-sm">{blog.category}</p>
+                                                            <p className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mb-4 rounded-md inline-block text-white">{blog.category}</p>
                                                             <button className="text-[#539aa0]" onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
                                                         </div>
                                                         <h2 className="text-xl h-16 sm:text-2xl text-[#363636] italic font-extrabold">{blog.title}</h2>
@@ -171,7 +169,7 @@ const RecentBlogs = () => {
                                                 </div>
                                             )
                                         }
-                                    </motion.div>
+                                    </div>
                             }
                         </div>
 
@@ -183,3 +181,6 @@ const RecentBlogs = () => {
 };
 
 export default RecentBlogs;
+
+
+

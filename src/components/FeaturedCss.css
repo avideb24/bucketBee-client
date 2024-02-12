@@ -1,0 +1,14 @@
+.blog-title::before{
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -8px;
+    background: linear-gradient(to right, #4F46E5, #805AD5, #D53F8C);
+    transition: .5s;
+}
+
+.blog-title:hover::before{
+    width: 100%;
+}

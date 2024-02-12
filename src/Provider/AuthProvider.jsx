@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from "react";
 import { auth } from "./firebase.config";
+// import AnimatedCursor from "react-animated-cursor";
 
 export const AuthContext = createContext(null);
 
@@ -53,6 +54,20 @@ const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
+            {/* <AnimatedCursor
+                innerSize={8}
+                outerSize={35}
+                innerScale={1}
+                outerScale={2}
+                outerAlpha={0}
+                hasBlendMode={true}
+                innerStyle={{
+                    backgroundColor: '#6073bb'
+                }}
+                outerStyle={{
+                    border: '3px solid #6073bb'
+                }}
+            /> */}
         </AuthContext.Provider>
     );
 };
