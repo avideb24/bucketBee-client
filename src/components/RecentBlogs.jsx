@@ -140,7 +140,7 @@ const RecentBlogs = () => {
                                     <div className="flex flex-wrap justify-center items-start gap-4 bg-white p-4 rounded-md">
                                         {
                                             blogs.slice(0, 6).map(blog =>
-                                                <div key={blog._id} className="w-96 bg-white p-5 mx-4 sm:mx-0 rounded-md border-2 border-[#539aa0] flex flex-col">
+                                                <div key={blog._id} className="w-96 bg-white p-5 mx-4 sm:mx-0 rounded-md border-2 border-[#539aa0] flex flex-col hover:scale-105 duration-200">
                                                     <PhotoProvider>
                                                         <PhotoView src={blog.photo}>
                                                             <img className="w-full h-52 object-cover cursor-pointer rounded-md" src={blog.photo} alt="" />
