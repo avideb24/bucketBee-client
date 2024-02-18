@@ -10,7 +10,7 @@ const Banner = () => {
         <div
            
         >
-            <div className="bg-slate-200 py-16">
+            <div className="bg-slate-100 py-16">
                 <div className='max-w-3xl mx-auto  px-7 '>
                     <div className="flex justify-start">
                         <h3 className='text-lg sm:text-2xl lg:text-3xl text-[#266166] mb-3'>Welcome To</h3>
