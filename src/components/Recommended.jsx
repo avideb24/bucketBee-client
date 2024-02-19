@@ -61,7 +61,7 @@ const Recommended = () => {
                                                 </PhotoView>
                                             </PhotoProvider>
                                             <p className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mt-3 rounded-md inline-block text-xs text-white">{blog.category}</p>
-                                            <h3 className="sm:text-md md:text-xl h-14 font-bold mt-1 text-[#363636]">{blog.title}</h3>
+                                            <h3 className="sm:text-md md:text-xl h-[58px] font-bold mt-1 text-[#363636] overflow-hidden">{blog.title}</h3>
                                             <Link to={`/blogs/${blog._id}`}>
                                                 <button className="flex items-center gap-2 text-[#539aa0] mt-2">Read More <span className="mt-1 font-extrabold text-xs md:text-xl text-[#539aa0]"><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
                                             </Link>

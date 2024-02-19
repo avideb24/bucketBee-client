@@ -7,19 +7,18 @@ import { Helmet } from "react-helmet";
 import favicon from '../images/fav.png';
 import { useNavigate } from "react-router-dom";
 import AnimatedCursor from "react-animated-cursor"
+import useAxiosPublic from "../hooks/useAxiosPublic";
+
+const image_hosting_key = 'f469d002d3fe0da87cd679eaa63cbc34';
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddBlog = () => {
 
-
-
     const navigate = useNavigate();
-
+    const axiosPublic = useAxiosPublic();
     const { user } = useContext(AuthContext);
-    
     const [selectedCategory, setSelectedCategory] = useState('Food');
-
     const [loadedUsers, setLoadedUsers] = useState([]);
-
     const loggedUser = loadedUsers.find(loadedUser => loadedUser?.userEmail === user?.email);
 
     // console.log(loggedUser);
@@ -37,17 +36,23 @@ const AddBlog = () => {
         setSelectedCategory(selectedValue);
     }
 
-    const handleBlogSubmit = e => {
+    const handleBlogSubmit = async(e) => {
         e.preventDefault();
         const form = e.target;
 
+        const imageFormData = new FormData();
+            imageFormData.append('image', form.image.files[0]);
+            const imageUploadResponse = await axiosPublic.post(image_hosting_api, imageFormData);
+
+            const uploadedImageUrl = imageUploadResponse.data.data.url;
+
         const title = form.title.value;
-        const photo = form.photo.value;
+        // const photo = form.photo.value;
         const shortDescription = form.shortDescription.value;
         const longDescription = form.longDescription.value;
         const category = selectedCategory;
 
-        const addedBlog = { title, photo, shortDescription, longDescription, category, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto, userEmail: user.email };
+        const addedBlog = { title, photo:uploadedImageUrl, shortDescription, longDescription, category, userName: loggedUser?.userName, userPhoto: loggedUser?.userPhoto, userEmail: user.email };
         console.log(addedBlog);
 
         fetch('https://bucket-bee-server.vercel.app/blogs', {
@@ -94,12 +99,12 @@ const AddBlog = () => {
             </Helmet>
             <NavBar></NavBar>
             <div className="max-w-7xl mx-auto">
-                <div className="my-1 sm:my-5 py-5 sm:py-10 mx-4">
+                <div className="my-1 sm:my-5 py-5 sm:pb-10 sm:pt-3 mx-4">
                     <h2 className="text-center text-2xl sm:text-3xl  text-[#363636] font-bold pb-2">Add Your Blog</h2>
                     <div className='w-32 h-1 mx-auto bg-[#363636] mb-8'></div>
                     <form className="max-w-5xl mx-auto space-y-3" onSubmit={handleBlogSubmit}>
-                        <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="title" placeholder="Blog Title" required/> <br />
-                        <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="photo" placeholder="Image URL" required/> <br />
+                        <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="title" placeholder="Blog Title" required /> <br />
+                        {/* <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="photo" placeholder="Image URL" required /> <br /> */}
                         <input type="text" className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md" name="shortDescription" placeholder="Short Description" required /> <br />
                         <input type="text" className="w-full h-10 px-4 outline-none border-2 border-[#539aa0] bg-white text-black font-normal rounded-md" name="longDescription" placeholder="Long Description" required /> <br />
                         <select onChange={handleCategory} required className="w-full h-10 px-4 border-2 border-[#539aa0] outline-none bg-white text-black font-normal rounded-md">
@@ -108,6 +113,7 @@ const AddBlog = () => {
                             <option value="Education">Education</option>
                             <option value="Lifestyle">Lifestyle</option>
                         </select>
+                        <input type="file" className="file-input file-input-bordered w-full bg-white h-9 text-primary border-2 border-[#539aa0]" name="image" required />
                         <input type="submit" className="w-full h-10 px-4 outline-none bg-[#539aa0] text-black font-bold rounded-md cursor-pointer" value="Submit" />
                     </form>
                 </div>

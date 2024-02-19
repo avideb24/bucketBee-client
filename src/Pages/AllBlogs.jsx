@@ -193,7 +193,7 @@ const AllBlogs = () => {
                                                                     <p className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mb-4 rounded-md inline-block text-white">{blog.category}</p>
                                                                     <button onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
                                                                 </div>
-                                                                <div className="h-16">
+                                                                <div className="h-[60px] overflow-hidden">
                                                                     {
                                                                         blog.title.length < 45 ?
                                                                             <h2 className="text-xl sm:text-2xl text-black italic font-extrabold">{blog.title}</h2>

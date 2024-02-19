@@ -151,7 +151,7 @@ const RecentBlogs = () => {
                                                             <p className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mb-4 rounded-md inline-block text-white">{blog.category}</p>
                                                             <button className="text-[#539aa0]" onClick={() => handleWishlist(blog._id)}><BsFillClipboardHeartFill></BsFillClipboardHeartFill></button>
                                                         </div>
-                                                        <h2 className="text-xl h-16 sm:text-2xl text-[#363636] italic font-extrabold">{blog.title}</h2>
+                                                        <h2 className="text-xl h-[65px] sm:text-2xl text-[#363636] italic font-extrabold overflow-hidden">{blog.title}</h2>                                                      
                                                         <div>
                                                             {
                                                                 blog.shortDescription.length < 40 ?

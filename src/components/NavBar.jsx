@@ -49,17 +49,17 @@ const NavBar = () => {
     return (
         <div className="bg-[#f6f6f6] text-secondary px-2 sm:px-6">
             <div className="max-w-7xl mx-auto px-0 flex justify-between items-center">
-                <div className="flex gap-2">
+                <div className="flex gap-2 mt-6">
                     <a className="text-xl" href="#"><FaFacebook></FaFacebook></a>
                     <a className="text-xl" href="#"><AiFillInstagram ></AiFillInstagram ></a>
                     <a className="text-xl" href="#"><FaPinterest  ></FaPinterest  ></a>
                 </div>
                 <div className="pt-6 sm:pt-6 sm:pb-2">
                     <Link to='/'>
-                        <img className="w-28 sm:w-44 object-contain" src={logo} alt="" />
+                        <img className="w-28 sm:w-44 object-contain ml-4 sm:ml-16" src={logo} alt="" />
                     </Link>
                 </div>
-                <div>
+                <div className="mt-6">
                     {
                         user ?
                             <div className="flex items-center gap-3">
@@ -82,7 +82,7 @@ const NavBar = () => {
                     }
                 </div>
             </div>
-            <div className=" flex justify-center">
+            <div className=" flex justify-center mt-5 sm:mt-0">
                 <ul className="flex gap-4 sm:gap-8 text-xs sm:text-sm py-4 px-1">
                     <li>
                         <NavLink

@@ -113,7 +113,7 @@ const Wishlist = () => {
                                                             <img className="w-full h-20 sm:w-full sm:h-20 md:h-36 lg:h-40 object-cover cursor-pointer rounded-md" src={blog.photo} alt="" />
                                                         </PhotoView>
                                                     </PhotoProvider>
-                                                    <p className="text-xs mt-2 text-center">{blog.category}</p>
+                                                    <p className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mt-2 rounded-md inline-block text-white">{blog.category}</p>
                                                 </div>
                                                 <div className="w-1/2">
                                                     <div className="text-justify">
