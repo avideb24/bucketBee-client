@@ -98,6 +98,20 @@ const Register = () => {
 
     return (
         <div>
+             <AnimatedCursor
+                innerSize={15}
+                outerSize={35}
+                innerScale={1}
+                outerScale={2}
+                outerAlpha={0}
+                hasBlendMode={true}
+                innerStyle={{
+                    backgroundColor: '#eab308'
+                }}
+                outerStyle={{
+                    border: '3px solid #eab308'
+                }}
+            />
             <Helmet>
                 <title>Register</title>
                 <link rel="icon" href={favicon} />
