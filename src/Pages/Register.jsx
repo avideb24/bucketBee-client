@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import favicon from '../images/fav.png';
+import AnimatedCursor from "react-animated-cursor";
 
 const Register = () => {
 

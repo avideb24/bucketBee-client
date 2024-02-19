@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import favicon from '../images/fav.png';
+import AnimatedCursor from "react-animated-cursor";
 
 const Wishlist = () => {
 

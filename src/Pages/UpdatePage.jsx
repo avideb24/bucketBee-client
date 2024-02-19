@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import favicon from '../images/fav.png';
+import AnimatedCursor from "react-animated-cursor";
 
 const UpdatePage = () => {
 

@@ -12,6 +12,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 import favicon from '../images/fav.png';
 import { useQuery } from "@tanstack/react-query";
 import Skeleton from "react-loading-skeleton";
+import AnimatedCursor from "react-animated-cursor";
 
 const AllBlogs = () => {
 
@@ -123,6 +124,20 @@ const AllBlogs = () => {
 
     return (
         <div>
+             <AnimatedCursor
+                innerSize={15}
+                outerSize={35}
+                innerScale={1}
+                outerScale={2}
+                outerAlpha={0}
+                hasBlendMode={true}
+                innerStyle={{
+                    backgroundColor: '#eab308'
+                }}
+                outerStyle={{
+                    border: '3px solid #eab308'
+                }}
+            />
             <Helmet>
                 <title>All Blogs</title>
                 <link rel="icon" href={favicon} />

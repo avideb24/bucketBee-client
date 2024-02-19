@@ -6,6 +6,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import favicon from '../images/fav.png';
 import { useNavigate } from "react-router-dom";
+import AnimatedCursor from "react-animated-cursor"
 
 const AddBlog = () => {
 
@@ -73,6 +74,20 @@ const AddBlog = () => {
 
     return (
         <div>
+            <AnimatedCursor
+                innerSize={15}
+                outerSize={35}
+                innerScale={1}
+                outerScale={2}
+                outerAlpha={0}
+                hasBlendMode={true}
+                innerStyle={{
+                    backgroundColor: '#eab308'
+                }}
+                outerStyle={{
+                    border: '3px solid #eab308'
+                }}
+            />
             <Helmet>
                 <title>Add Blog</title>
                 <link rel="icon" href={favicon} />

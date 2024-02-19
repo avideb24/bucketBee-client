@@ -9,18 +9,39 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Helmet } from "react-helmet";
 import Tags from "../components/Tags";
 import FeaturedHome from "../components/FeaturedHome";
+import AnimatedCursor from "react-animated-cursor";
+
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
+
 
 const Home = () => {
 
     const { user } = useContext(AuthContext);
 
     return (
-        <div data-aos="zoom-in" data-aos-duration="1000">
+        <div >
+            <AnimatedCursor
+                innerSize={15}
+                outerSize={35}
+                innerScale={1}
+                outerScale={2}
+                outerAlpha={0}
+                hasBlendMode={true}
+                innerStyle={{
+                    backgroundColor: '#eab308'
+                }}
+                outerStyle={{
+                    border: '3px solid #eab308'
+                }}
+            />
             {
                 user ?
                     <Helmet>
                         <title>Home</title>
-                        
+
                     </Helmet>
                     :
                     <Helmet>

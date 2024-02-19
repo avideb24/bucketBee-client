@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import favicon from '../images/fav.png';
 import { useQuery } from "@tanstack/react-query";
 import Skeleton from "react-loading-skeleton";
+import AnimatedCursor from "react-animated-cursor";
 
 const ImageCell = ({ imageUrl }) => {
     return <img src={imageUrl} alt="Blog" style={{ width: '35px', height: '35px', borderRadius: '50%' }} />;
