@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import 'react-photo-view/dist/react-photo-view.css';
 import favicon from '../images/fav.png';
+import AnimatedCursor from "react-animated-cursor";
 
 const BlogDetails = () => {
 
@@ -86,6 +87,20 @@ const BlogDetails = () => {
 
     return (
         <div>
+            <AnimatedCursor
+                innerSize={15}
+                outerSize={35}
+                innerScale={1}
+                outerScale={2}
+                outerAlpha={0}
+                hasBlendMode={true}
+                innerStyle={{
+                    backgroundColor: '#eab308'
+                }}
+                outerStyle={{
+                    border: '3px solid #eab308'
+                }}
+            />
             <Helmet>
                 <title>{title}</title>
                 <link rel="icon" href={favicon} />
