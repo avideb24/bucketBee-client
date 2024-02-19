@@ -51,7 +51,7 @@ const Recommended = () => {
                                 <Skeleton className="h-40" />
                             </div>
                             :
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4" data-aos="fade-up" data-aos-duration="1000">
                                 {
                                     blogs.slice(0, 4).map(blog =>
                                         <div key={blog._id} className="border-2 border-[#539aa0] origin-center hover:rotate-3 duration-200 p-3 rounded-md">

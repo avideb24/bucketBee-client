@@ -137,7 +137,7 @@ const RecentBlogs = () => {
                                 blogs.length === 0 ?
                                     <p className="text-2xl text-[#363636] font-normal text-center my-10">No Blogs Added!</p>
                                     :
-                                    <div className="flex flex-wrap justify-center items-start gap-4 bg-white p-4 rounded-md">
+                                    <div className="flex flex-wrap justify-center items-start gap-4 bg-white p-4 rounded-md" data-aos="fade-up" data-aos-duration="1000">
                                         {
                                             blogs.slice(0, 6).map(blog =>
                                                 <div key={blog._id} className="w-96 bg-white p-5 mx-4 sm:mx-0 rounded-md border-2 border-[#539aa0] flex flex-col hover:scale-105 duration-200">

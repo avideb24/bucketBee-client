@@ -23,7 +23,7 @@ const Tags = () => {
       <div className="w-40 h-1 mx-auto bg-[#363636] mb-8 mt-4"></div>
       <div className="flex flex-wrap justify-center items-center gap-5">
         {uniqueCategories.map((category) => (
-          <div key={category} className="text-center hover:text-[#363636] border-2 border-[#539aa0]  bg-transparent text-[#539aa0] hover:bg-[#539aa0] px-5 py-3 rounded-full font-bold duration-200">
+          <div key={category} className="text-center hover:text-[#363636] border-2 border-[#539aa0]  bg-transparent text-[#539aa0] hover:bg-[#539aa0] px-5 py-3 rounded-full font-bold duration-200" data-aos="flip-up" data-aos-duration="1000">
             {category}
           </div>
         ))}

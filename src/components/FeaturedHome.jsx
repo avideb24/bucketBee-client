@@ -29,9 +29,9 @@ const FeaturedHome = () => {
                 {
                     isLoading ? <div>Data Loading</div>
                         :
-                        <div>
+                        <div >
                             <h2 className="text-2xl sm:text-3xl text-[#363636] font-bold pt-2 sm:pt-10 pb-2 mx-4 mb-5 border-b-4 border-b-[#363636]">Featured Blogs</h2>
-                            <div className="xl:grid xl:grid-cols-5 gap-6">
+                            <div className="xl:grid xl:grid-cols-5 gap-6" data-aos="fade-up" data-aos-duration="1000">
                                 <div className="mb-5 xl:mb-0 xl:col-span-3 border-2 rounded-md p-4">
                                     <img className="w-full h-80 object-cover rounded-md" src={firstBlog.photo} alt="" />
                                     <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 my-4 rounded-md inline-block text-white">{firstBlog.category}</span><br />

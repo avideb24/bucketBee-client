@@ -15,7 +15,7 @@ const Home = () => {
     const { user } = useContext(AuthContext);
 
     return (
-        <div>
+        <div data-aos="zoom-in" data-aos-duration="1000">
             {
                 user ?
                     <Helmet>
