@@ -51,8 +51,8 @@ const FeaturedHome = () => {
                                 <div className="xl:col-span-2 flex flex-col gap-7">
                                     {
                                         restBlogs?.slice(0, 3)?.map(blog =>
-                                            <div key={blog._id} className="flex gap-4 border-2 p-5 rounded-md">
-                                                <img className="w-52 rounded-md h-36 object-cover" src={blog.photo} alt="" />
+                                            <div key={blog._id} className=" sm:flex gap-4 border-2 p-5 rounded-md">
+                                                <img className="w-full mb-2 sm:mb-0 sm:w-52 rounded-md h-36 object-cover" src={blog.photo} alt="" />
                                                 <div className="">
                                                     <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mb-4 rounded-md inline-block text-sm text-white">{blog.category}</span> <br />
                                                     <h3 className="blog-title text-sm sm:text-xl font-bold mb-3 inline-block relative">{blog.title}</h3>
