@@ -48,10 +48,10 @@ const FeaturedHome = () => {
                                     <button className="flex items-center gap-2 text-[#539aa0] mt-4">Read More <span className="mt-1 font-extrabold text-md text-[#539aa0] "><AiOutlineArrowRight></AiOutlineArrowRight></span></button>
                                     </Link>
                                 </div>
-                                <div className="xl:col-span-2 flex flex-col gap-5">
+                                <div className="xl:col-span-2 flex flex-col gap-7">
                                     {
                                         restBlogs?.slice(0, 3)?.map(blog =>
-                                            <div key={blog._id} className="flex gap-4 border-2 p-3 rounded-md">
+                                            <div key={blog._id} className="flex gap-4 border-2 p-5 rounded-md">
                                                 <img className="w-52 rounded-md h-36 object-cover" src={blog.photo} alt="" />
                                                 <div className="">
                                                     <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-2 mb-4 rounded-md inline-block text-sm text-white">{blog.category}</span> <br />
